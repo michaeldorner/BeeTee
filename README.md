@@ -35,7 +35,7 @@ Just to clearify: Of course, since they are just two header files, it does not m
 
 The folder can differ: Please take care about your iOS version!
 
-For iOS 8 or later you can use a new bash script. This bash script checks if you have put your files correctly. just run it in the terminal with
+For iOS 8 or later you can use [a new bash script](/checkheaders.sh). This bash script checks if you have put your files correctly. just run it in the terminal with
 `bash path/to/the/bashscript/checkheaders.sh`
 
 
