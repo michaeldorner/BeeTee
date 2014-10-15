@@ -5,7 +5,7 @@ Demo application for Bluetooth device scanning using the iOS private framework "
 <p><img src="landingPage/screen1.png" align="center" hspace="10" alt="Main View"> <img src="landingPage/screen2.png" align="center" hspace="10" alt="Detail View"> </p>
 
 
-## Abstract
+##Abstract
 
 Because it is not trivial to use a private iOS framework, I implemented a demo application for the `BluetoothManager.framework` in iOS 7. I have not used the ARC.
 
@@ -33,8 +33,11 @@ Just to clearify: Of course, since they are just two header files, it does not m
 * Now you will find the `BluetoothManager.framework` in Targets → YourApp → Build Phases → Link Binary With Libraries:
 ![Alt text](/landingPage/linkLibrary.png)
 
-
 The folder can differ: Please take care about your iOS version!
+
+For iOS 8 or later you can use a new bash script. This bash script checks if you have put your files correctly. just run it in the terminal with
+`bash path/to/the/bashscript/checkheaders.sh`
+
 
 
 
