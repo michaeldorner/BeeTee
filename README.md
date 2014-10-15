@@ -68,6 +68,9 @@ and
 <pre><code>- (void)bluetoothAvailabilityChanged:(NSNotification *)notification { ... }</code></pre>
 
 
+##Problemsolving
+If you have problems make this project running have a look at [Stackoverflow](http://stackoverflow.com/search?q=beetee). If you have other questions or suggestions, feel free to contact me here in GitHub or somehow else. :-)
+
 
 ##Licence
 GPL (v3)
