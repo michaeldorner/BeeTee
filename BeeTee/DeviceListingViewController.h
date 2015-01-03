@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BluetoothScanner.h"
+#import "MDBluetoothManager.h"
 
-@interface DeviceListingViewController : UITableViewController <BluetoothScannerProtocol>
+@interface DeviceListingViewController : UITableViewController <MDBluetoothObserverProtocol>
+
+- (void)receivedBluetoothNotification:(MDBluetoothNotification)bluetoothNotification;
 
 @end

@@ -8,12 +8,9 @@
 
 #import "DeviceListingViewController.h"
 #import "DeviceDetailViewController.h"
-#import <BluetoothManager/BluetoothDevice.h>
 
 @interface DeviceListingViewController ()
 
-@property (retain, nonatomic) NSMutableDictionary *currentAvailableDevices;
-@property (retain, nonatomic) BluetoothScanner *bluetoothScanner;
 
 @end
 
@@ -21,7 +18,7 @@
 
 @implementation DeviceListingViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (instancetype)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
@@ -35,8 +32,10 @@
 {
     [super viewDidLoad];
     
-    self.bluetoothScanner = [[BluetoothScanner alloc] initWithDelegate:(id)self];
-    self.currentAvailableDevices = [[NSMutableDictionary alloc] init];
+    [[MDBluetoothManager sharedInstance] registerObserver:self];
+
+    [self.tableView reloadData];
+
 }
 
 
@@ -50,19 +49,22 @@
 
 #pragma mark - delegate methods
 
-- (void)addBluetoothDevice:(BluetoothDevice *)bluetoothDevice
+- (void)receivedBluetoothNotification:(MDBluetoothNotification)bluetoothNotification
 {
-    [self.currentAvailableDevices setObject:bluetoothDevice forKey:bluetoothDevice.address];
-    [self.tableView reloadData];
+    //NSArray *detectedBluetoothDevices = [[MDBluetoothManager sharedInstance] discoveredBluetoothDevices];
+    //MDBluetoothDevice *bluetoothDevice = [detectedBluetoothDevices lastObject];
+    
+    switch (bluetoothNotification) {
+        case MDBluetoothDeviceDiscoveredNotification:
+            [self.tableView reloadData];
+            break;
+        case MDBluetoothDeviceRemovedNotification:
+            [self.tableView reloadData];
+            break;
+        default:
+            break;
+    }
 }
-
-- (void)removeBluetoothDevice:(BluetoothDevice *)bluetoothDevice
-{
-    [self.currentAvailableDevices removeObjectForKey:bluetoothDevice.address];
-    [self.tableView reloadData];
-
-}
-
 
 
 #pragma mark - Table view data source
@@ -75,7 +77,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.currentAvailableDevices allKeys] count];
+    return [[[MDBluetoothManager sharedInstance] discoveredBluetoothDevices] count];
 }
 
 
@@ -84,7 +86,8 @@
     static NSString *CellIdentifier = @"DeviceCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    BluetoothDevice *bluetoothDevice = (BluetoothDevice*)[self.currentAvailableDevices allValues][indexPath.row];
+    NSArray *detectedBluetoothDevices = [[MDBluetoothManager sharedInstance] discoveredBluetoothDevices];
+    MDBluetoothDevice *bluetoothDevice = [detectedBluetoothDevices objectAtIndex:indexPath.row];
     
     cell.textLabel.text = bluetoothDevice.name;
     cell.detailTextLabel.text = bluetoothDevice.address;
@@ -98,9 +101,11 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    UITableViewCell *cell = (UITableViewCell *)sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 
-    UITableViewCell *cell =  (UITableViewCell *)sender;
-    BluetoothDevice *bluetoothDevice = (BluetoothDevice *)[self.currentAvailableDevices objectForKey:cell.detailTextLabel.text]; // MAC address as key
+    NSArray *detectedBluetoothDevices = [[MDBluetoothManager sharedInstance] discoveredBluetoothDevices];
+    MDBluetoothDevice *bluetoothDevice = [detectedBluetoothDevices objectAtIndex:indexPath.row];
     
     DeviceDetailViewController *deviceDetailViewController = [segue destinationViewController];
     [deviceDetailViewController setBluetoothDevices:bluetoothDevice];

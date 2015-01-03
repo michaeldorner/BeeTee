@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <BluetoothManager/BluetoothDevice.h>
+#import "MDBluetoothDevice.h"
 
 @interface DeviceDetailViewController : UITableViewController
 
-- (void)setBluetoothDevices:(BluetoothDevice *)device;
+- (void)setBluetoothDevices:(MDBluetoothDevice *)device;
 
 @end

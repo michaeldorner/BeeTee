@@ -20,10 +20,17 @@
 
 
 
+
 @interface BluetoothScanner : NSObject
 
-@property (assign, nonatomic, readonly) BOOL isScanning;
+//@property (assign, nonatomic, getter=isPowered) BOOL setPower;
+@property (strong, nonatomic, readonly) NSMutableArray *discoveredBluetoothDevices;
 
-- (id)initWithDelegate:(id<BluetoothScannerProtocol>)delegate;
+- (instancetype)initWithDelegate:(id<BluetoothScannerProtocol>)delegate NS_DESIGNATED_INITIALIZER;
+- (instancetype)init;
+
+- (void)enable;
+- (void)disable;
+
 
 @end

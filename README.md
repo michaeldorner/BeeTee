@@ -7,7 +7,11 @@ Demo application for Bluetooth device scanning using the iOS private framework "
 
 ##Abstract
 
-Because it is not trivial to use a private iOS framework, I implemented a demo application for the `BluetoothManager.framework` in iOS 7. I have not used the ARC.
+Because it is not trivial to use a private iOS framework, I implemented a demo application for the `BluetoothManager.framework` in ≥ iOS 7.
+
+BeeTee offers two approaches, depending on what you want to try:
+* An wrapper class called `MDBluetoothManager`, where you can easily interact with the underlaying `BluetoothManager.framework` without any deeper knowledge about `BluetoothManager.framework`.
+* Because all of my implementation is open, you can study the underlaying `BluetoothManager.framework` and how it works - but look out, it is not trivial.
 
 Based on the [AppStore guideline §2.5](https://developer.apple.com/appstore/resources/approval/guidelines.html) not to use private (undocumented) functions it is not possible to publish apps with the `BluetoothManager.framework` in the AppStore. You may need a valid membership of the [iOS Developer Program](https://developer.apple.com/programs/ios/), because it makes sense that this app and framework does not work in the simulator.
 
@@ -39,9 +43,52 @@ For iOS 8 or later you can use [a new bash script](/checkheaders.sh). This bash 
 `bash path/to/the/bashscript/checkheaders.sh`
 
 
+##Versions
+###2.0
+* Wrapper classes `MDBluetoothManager` and `MDBluetoothDevice` introduced 
+* Updated to ARC
+* Extented GUI
+
+###1.0
+* Initial Commit as demo project for `BluetoothManager.framework`, Non-ARC
 
 
-##The BluetoothManager.framework
+##The `MDBluetoothManager`
+Although all of my code is open source, I wrote a wrapper class which abstracts the `BluetoothManager.framework` for an easy handling.
+The wrapper interface of this class is quite tiny:
+
+    @interface MDBluetoothManager : NSObject
+
+    + (MDBluetoothManager *)sharedInstance;
+    - (BOOL)bluetoothIsAvailable; // is Bluetooth in general available?
+    
+    // control Bluetooth
+    - (void)turnBluetoothOn; 
+    - (BOOL)bluetoothIsPowered;
+    - (void)turnBluetoothOff;
+    
+    // handling scans and its results
+    - (void)startScan;
+    - (BOOL)isScanning;
+    - (void)endScan;
+    - (NSArray*)discoveredBluetoothDevices;
+    
+    // (un)register observers, which listen to MDBluetoothNotifications and implement the MDBluetoothObserverProtocol
+    - (void)registerObserver:(id<MDBluetoothObserverProtocol>)observer;
+    - (void)unregisterObserver:(id<MDBluetoothObserverProtocol>)observer;
+    @end
+
+The protocol `MDBluetoothObserverProtocol` requires an implementation of the method
+
+    - (void)receivedBluetoothNotification:(MDBluetoothNotification)bluetoothNotification;
+
+In that method you can handle the reaction to the Bluetooth notifications.
+
+
+
+##The `BluetoothManager.framework`
+
+If you want to dive deeper into `BluetoothManager.framework` this section is interesting for you. 
 
 ####Available Notifications
     BluetoothAvailabilityChangedNotification

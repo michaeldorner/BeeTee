@@ -14,9 +14,11 @@
 @interface BluetoothScanner ()
 
 @property (retain, nonatomic) BluetoothManager *bluetoothManager;
-@property (assign, nonatomic, readwrite) BOOL isScanning;
-@property (retain, nonatomic) NSMutableDictionary *currentDevices;
+@property (assign, nonatomic) BOOL isScanning;
+//@property (retain, nonatomic) NSMutableDictionary *currentDevices;
 @property (retain, nonatomic) id<BluetoothScannerProtocol> delegate;
+@property (strong, nonatomic) NSMutableArray *observers;
+@property (strong, nonatomic, readwrite) NSMutableArray *discoveredBluetoothDevices;
 
 - (void)addNotification;
 
@@ -25,12 +27,10 @@
 
 @implementation BluetoothScanner
 
-- (id)initWithDelegate:(id<BluetoothScannerProtocol>)delegate
+- (instancetype)initWithDelegate:(id<BluetoothScannerProtocol>)delegate
 {
     self = [super init];
     if (self) {
-        _isScanning = NO;
-        _currentDevices = [[NSMutableDictionary alloc] init];
         _bluetoothManager = [BluetoothManager sharedInstance]; //  necessary, do not remove this line, although it is a singleton
         self.delegate = delegate;
         [self addNotification];
@@ -78,14 +78,17 @@
 
 void notificationCallback(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo)
 {
-    if ([(NSString*)name characterAtIndex:0] == 'B') { // notice only notification they are associated with the BluetoothManager.framework
+    if ([(__bridge NSString*)name characterAtIndex:0] == 'B') { // notice only notification they are associated with the BluetoothManager.framework
         NSLog(@"Callback detected: \n\t name: %@ \n\t object:%@", name, object);
     }
 }
 
 
+
+
 - (void)bluetoothAvailabilityChanged:(NSNotification *)notification
 {
+
     if (![self.bluetoothManager enabled]) {
         [self.bluetoothManager setEnabled:YES]; // automatically turn bluetooth on
     }
@@ -93,15 +96,19 @@ void notificationCallback(CFNotificationCenterRef center, void *observer, CFStri
         [self.bluetoothManager setDeviceScanningEnabled:YES];
         [self.bluetoothManager scanForServices:0xFFFFFFFF];
     }
+     
 }
 
 
 - (void)bluetoothPowerChanged:(NSNotification *)notification
 {
+
+    
     if ([self.bluetoothManager enabled]) {
         [self.bluetoothManager setDeviceScanningEnabled:YES];
         [self.bluetoothManager scanForServices:0xFFFFFFFF];
     }
+    
 }
 
 
@@ -110,6 +117,8 @@ void notificationCallback(CFNotificationCenterRef center, void *observer, CFStri
 {
     BluetoothDevice *device = (BluetoothDevice *)[notification object];
     [self.delegate addBluetoothDevice:[device copy]];
+    [self.discoveredBluetoothDevices addObject:device];
+    
     
     // Log it
     //NSLog(@"Name: %@\nAddress: %@\nMajorClass: %u\nMinorClass:%u\nType:%d\nBatteryLevelSupport:%hhd", device.name, device.address, device.majorClass, device.minorClass, device.type, device.supportsBatteryLevel);
@@ -121,6 +130,7 @@ void notificationCallback(CFNotificationCenterRef center, void *observer, CFStri
 {
     BluetoothDevice *device = (BluetoothDevice *)[notification object];
     [self.delegate removeBluetoothDevice:device];
+    [self.discoveredBluetoothDevices removeObject:device];
 
 }
 

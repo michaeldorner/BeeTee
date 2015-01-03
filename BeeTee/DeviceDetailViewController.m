@@ -7,7 +7,7 @@
 //
 
 #import "DeviceDetailViewController.h"
-#import <BluetoothManager/BluetoothManager.h>
+#import "MDBluetoothDevice.h"
 
 
 @interface DeviceDetailViewController ()
@@ -22,7 +22,7 @@
 @implementation DeviceDetailViewController
 
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (instancetype)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
@@ -46,13 +46,13 @@
 }
 
 
-- (void)setBluetoothDevices:(BluetoothDevice *)device
+- (void)setBluetoothDevices:(MDBluetoothDevice *)device
 {
     NSString *name = [NSString stringWithFormat:@"%@", device.name];
     NSString *address = [NSString stringWithFormat:@"%@", device.address];
-    NSString *majorClass = [NSString stringWithFormat:@"%u", device.majorClass];
-    NSString *minorClass = [NSString stringWithFormat:@"%u", device.minorClass];
-    NSString *type = [NSString stringWithFormat:@"%d", device.type];
+    NSString *majorClass = [NSString stringWithFormat:@"%lu", (unsigned long)device.majorClass];
+    NSString *minorClass = [NSString stringWithFormat:@"%lu", (unsigned long)device.minorClass];
+    NSString *type = [NSString stringWithFormat:@"%ld", (long)device.type];
     NSString *supportsBatteryLevel = device.supportsBatteryLevel ? @"Yes" : @"No";
     
     self.deviceAttributes = [[NSArray alloc] initWithObjects:name, address, majorClass, minorClass, type, supportsBatteryLevel, nil];
