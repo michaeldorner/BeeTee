@@ -2,7 +2,7 @@
 
 Demo application for Bluetooth device scanning using the iOS private framework "BluetoothManager"
 
-![Screencast of BeeTee](/landingpage/screencast.gif)
+![Screencast of BeeTee](/landingPage/screencast.gif)
 
 ##Abstract
 
