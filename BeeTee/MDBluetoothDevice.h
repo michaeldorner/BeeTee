@@ -9,15 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "MDBluetoothDevice.h"
 
-
 @interface MDBluetoothDevice : NSObject
 
-@property (strong, nonatomic, readonly) NSString *name;
-@property (strong, nonatomic, readonly) NSString *address;
+@property (strong, nonatomic, readonly) NSString* name;
+@property (strong, nonatomic, readonly) NSString* address;
 @property (assign, nonatomic, readonly) NSUInteger majorClass;
 @property (assign, nonatomic, readonly) NSUInteger minorClass;
 @property (assign, nonatomic, readonly) NSInteger type;
 @property (assign, nonatomic, readonly) BOOL supportsBatteryLevel;
+@property (strong, nonatomic, readonly) NSDate* detectingDate;
 
 - (instancetype)init __unavailable;
 - (BOOL)isEqual:(id)object;

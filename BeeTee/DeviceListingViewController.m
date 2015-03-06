@@ -11,33 +11,18 @@
 
 @interface DeviceListingViewController ()
 
-
 @end
 
-
-
 @implementation DeviceListingViewController
-
-- (instancetype)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     [[MDBluetoothManager sharedInstance] registerObserver:self];
 
     [self.tableView reloadData];
-
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -45,15 +30,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
 #pragma mark - delegate methods
 
 - (void)receivedBluetoothNotification:(MDBluetoothNotification)bluetoothNotification
 {
-    //NSArray *detectedBluetoothDevices = [[MDBluetoothManager sharedInstance] discoveredBluetoothDevices];
-    //MDBluetoothDevice *bluetoothDevice = [detectedBluetoothDevices lastObject];
-    
+    // NSArray *detectedBluetoothDevices = [[MDBluetoothManager sharedInstance] discoveredBluetoothDevices];
+    // MDBluetoothDevice *bluetoothDevice = [detectedBluetoothDevices lastObject];
+
     switch (bluetoothNotification) {
         case MDBluetoothDeviceDiscoveredNotification:
             [self.tableView reloadData];
@@ -66,51 +49,45 @@
     }
 }
 
-
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
     return 1;
 }
 
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView*)tableView
+    numberOfRowsInSection:(NSInteger)section
 {
     return [[[MDBluetoothManager sharedInstance] discoveredBluetoothDevices] count];
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    static NSString *CellIdentifier = @"DeviceCellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    NSArray *detectedBluetoothDevices = [[MDBluetoothManager sharedInstance] discoveredBluetoothDevices];
-    MDBluetoothDevice *bluetoothDevice = [detectedBluetoothDevices objectAtIndex:indexPath.row];
-    
+    static NSString* CellIdentifier = @"DeviceCellIdentifier";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+
+    NSArray* detectedBluetoothDevices = [[MDBluetoothManager sharedInstance] discoveredBluetoothDevices];
+    MDBluetoothDevice* bluetoothDevice = [detectedBluetoothDevices objectAtIndex:indexPath.row];
+
     cell.textLabel.text = bluetoothDevice.name;
     cell.detailTextLabel.text = bluetoothDevice.address;
-    
+
     return cell;
 }
 
-
-
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-    UITableViewCell *cell = (UITableViewCell *)sender;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    UITableViewCell* cell = (UITableViewCell*)sender;
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
 
-    NSArray *detectedBluetoothDevices = [[MDBluetoothManager sharedInstance] discoveredBluetoothDevices];
-    MDBluetoothDevice *bluetoothDevice = [detectedBluetoothDevices objectAtIndex:indexPath.row];
-    
-    DeviceDetailViewController *deviceDetailViewController = [segue destinationViewController];
+    NSArray* detectedBluetoothDevices = [[MDBluetoothManager sharedInstance] discoveredBluetoothDevices];
+    MDBluetoothDevice* bluetoothDevice = [detectedBluetoothDevices objectAtIndex:indexPath.row];
+
+    DeviceDetailViewController* deviceDetailViewController = [segue destinationViewController];
     [deviceDetailViewController setBluetoothDevices:bluetoothDevice];
-  
 }
-
 
 @end

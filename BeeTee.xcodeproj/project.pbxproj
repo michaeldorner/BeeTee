@@ -134,8 +134,6 @@
 				5F6E5244180AB341000FB14D /* View */,
 				5F6E524B180AB354000FB14D /* Controller */,
 				5F6E524F180AB36A000FB14D /* Model */,
-				5F6E5217180AB313000FB14D /* AppDelegate.h */,
-				5F6E5218180AB313000FB14D /* AppDelegate.m */,
 				5F6E5223180AB313000FB14D /* Images.xcassets */,
 				5F6E520F180AB313000FB14D /* Supporting Files */,
 			);
@@ -145,6 +143,8 @@
 		5F6E520F180AB313000FB14D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5F6E5217180AB313000FB14D /* AppDelegate.h */,
+				5F6E5218180AB313000FB14D /* AppDelegate.m */,
 				5F6E5210180AB313000FB14D /* BeeTee-Info.plist */,
 				5F6E5211180AB313000FB14D /* InfoPlist.strings */,
 				5F6E5214180AB313000FB14D /* main.m */,

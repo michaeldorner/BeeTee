@@ -9,21 +9,19 @@
 #import "MDBluetoothDevice.h"
 #import <BluetoothManager/BluetoothDevice.h>
 
-
 @interface MDBluetoothDevice ()
 
-@property (strong, nonatomic, readwrite) NSString *name;
-@property (strong, nonatomic, readwrite) NSString *address;
+@property (strong, nonatomic, readwrite) NSString* name;
+@property (strong, nonatomic, readwrite) NSString* address;
 @property (assign, nonatomic, readwrite) NSUInteger majorClass;
 @property (assign, nonatomic, readwrite) NSUInteger minorClass;
 @property (assign, nonatomic, readwrite) NSInteger type;
 @property (assign, nonatomic, readwrite) BOOL supportsBatteryLebel;
-//@property (assign, nonatomic, readwrite) NSInteger batteryLebel;
+@property (strong, nonatomic, readwrite) NSDate* detectingDate;
 
 - (instancetype)initWithBluetoothDevice:(BluetoothDevice*)bluetoothDevice;
 
 @end
-
 
 @implementation MDBluetoothDevice
 
@@ -36,17 +34,17 @@
     _minorClass = bluetoothDevice.minorClass;
     _type = bluetoothDevice.type;
     _supportsBatteryLevel = bluetoothDevice.supportsBatteryLevel;
-    
+    _detectingDate = [[NSDate alloc] init];
+
     return self;
 }
 
-
-- (BOOL)isEqualToBluetoothDevice:(MDBluetoothDevice*)bluetoothDevice {
+- (BOOL)isEqualToBluetoothDevice:(MDBluetoothDevice*)bluetoothDevice
+{
     if (!bluetoothDevice) {
         return NO;
     }
     return [self.address isEqualToString:bluetoothDevice.address];
-    
 }
 
 - (BOOL)isEqual:(id)object
@@ -54,20 +52,16 @@
     if (self == object) {
         return YES;
     }
-    
+
     if (![object isKindOfClass:[MDBluetoothDevice class]]) {
         return NO;
     }
     return [self isEqualToBluetoothDevice:object];
 }
 
-
 - (NSUInteger)hash
 {
     return [self.address hash];
 }
-
-
-
 
 @end

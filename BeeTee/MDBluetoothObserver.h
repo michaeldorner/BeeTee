@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 typedef enum MDBluetoothNotification : NSUInteger {
     MDBluetoothPowerChangedNotification,
     MDBluetoothAvailabilityChangedNotification,
@@ -22,11 +21,10 @@ typedef enum MDBluetoothNotification : NSUInteger {
     MDBluetoothDeviceDisconnectSuccessNotification
 } MDBluetoothNotification;
 
-
-
 @protocol MDBluetoothObserverProtocol <NSObject>
 
 @required
-- (void)receivedBluetoothNotification:(MDBluetoothNotification)bluetoothNotification;
+- (void)receivedBluetoothNotification:
+        (MDBluetoothNotification)bluetoothNotification;
 
 @end

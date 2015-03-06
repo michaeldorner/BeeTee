@@ -10,10 +10,9 @@
 #import "MDBluetoothDevice.h"
 #import "MDBluetoothObserver.h"
 
-
 @interface MDBluetoothManager : NSObject
 
-+ (MDBluetoothManager *)sharedInstance;
++ (MDBluetoothManager*)sharedInstance;
 
 - (BOOL)bluetoothIsAvailable;
 
@@ -28,6 +27,5 @@
 
 - (void)registerObserver:(id<MDBluetoothObserverProtocol>)observer;
 - (void)unregisterObserver:(id<MDBluetoothObserverProtocol>)observer;
-
 
 @end

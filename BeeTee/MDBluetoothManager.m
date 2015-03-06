@@ -10,12 +10,11 @@
 #import <BluetoothManager/BluetoothManager.h>
 #import <BluetoothManager/BluetoothDevice.h>
 
-
 @interface MDBluetoothManager ()
 
-@property (strong, nonatomic) NSMutableArray *internalDiscoveredBluetoothDevices;
-@property (strong, nonatomic) NSMutableArray *observers;
-@property (retain, nonatomic) BluetoothManager *internalBluetoothManager;
+@property (strong, nonatomic) NSMutableArray* internalDiscoveredBluetoothDevices;
+@property (strong, nonatomic) NSMutableArray* observers;
+@property (retain, nonatomic) BluetoothManager* internalBluetoothManager;
 @property (assign, nonatomic) BOOL scanRequested;
 @property (assign, nonatomic, readwrite) BOOL isScanning;
 
@@ -28,22 +27,18 @@
 
 @end
 
-
-
 @implementation MDBluetoothManager
-
 
 + (MDBluetoothManager*)sharedInstance
 {
-    static MDBluetoothManager *bluetoothManager = nil;
+    static MDBluetoothManager* bluetoothManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [BluetoothManager sharedInstance];
-        bluetoothManager = [[MDBluetoothManager alloc] init];
+    [BluetoothManager sharedInstance];
+    bluetoothManager = [[MDBluetoothManager alloc] init];
     });
     return bluetoothManager;
 }
-
 
 - (instancetype)init
 {
@@ -53,56 +48,86 @@
         _internalBluetoothManager = [BluetoothManager sharedInstance];
         _scanRequested = NO;
     }
-    
+
     [self addNotification];
-    
+
     return self;
 }
 
-
 - (void)addNotification
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bluetoothPowerChanged:) name:@"BluetoothPowerChangedNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bluetoothAvailabilityChanged:) name:@"BluetoothAvailabilityChangedNotification" object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bluetoothDeviceDiscovered:) name:@"BluetoothDeviceDiscoveredNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bluetoothDeviceRemoved:) name:@"BluetoothDeviceRemovedNotification" object:nil];
-    
-    
-    // all available notifications belonging to BluetoothManager I could figure out - not used and therefore implemented in this demo app
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(bluetoothPowerChanged:)
+               name:@"BluetoothPowerChangedNotification"
+             object:nil];
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(bluetoothAvailabilityChanged:)
+               name:@"BluetoothAvailabilityChangedNotification"
+             object:nil];
+
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(bluetoothDeviceDiscovered:)
+               name:@"BluetoothDeviceDiscoveredNotification"
+             object:nil];
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(bluetoothDeviceRemoved:)
+               name:@"BluetoothDeviceRemovedNotification"
+             object:nil];
+
+    // all available notifications belonging to BluetoothManager I could figure
+    // out - not used and therefore implemented in this demo app
     /*
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bluetoothConnectabilityChanged:) name:@"BluetoothConnectabilityChangedNotification" object:nil];
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bluetoothDeviceUpdated:) name:@"BluetoothDeviceUpdatedNotification" object:nil];
-     
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bluetoothDiscoveryStateChanged:) name:@"BluetoothDiscoveryStateChangedNotification" object:nil];
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bluetoothDeviceDiscovered:) name:@"BluetoothDeviceDiscoveredNotification" object:nil];
-     
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bluetoothDeviceConnectSuccess:) name:@"BluetoothDeviceConnectSuccessNotification" object:nil];
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bluetoothConnectionStatusChanged:) name:@"BluetoothConnectionStatusChangedNotification" object:nil];
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bluetoothDeviceDisconnectSuccess:) name:@"BluetoothDeviceDisconnectSuccessNotification" object:nil];
-     */
-    
-    
-    // this helped me very much to figure out the methods mentioned the lines above
+   [[NSNotificationCenter defaultCenter] addObserver:self
+   selector:@selector(bluetoothConnectabilityChanged:)
+   name:@"BluetoothConnectabilityChangedNotification" object:nil];
+   [[NSNotificationCenter defaultCenter] addObserver:self
+   selector:@selector(bluetoothDeviceUpdated:)
+   name:@"BluetoothDeviceUpdatedNotification" object:nil];
+
+   [[NSNotificationCenter defaultCenter] addObserver:self
+   selector:@selector(bluetoothDiscoveryStateChanged:)
+   name:@"BluetoothDiscoveryStateChangedNotification" object:nil];
+   [[NSNotificationCenter defaultCenter] addObserver:self
+   selector:@selector(bluetoothDeviceDiscovered:)
+   name:@"BluetoothDeviceDiscoveredNotification" object:nil];
+
+   [[NSNotificationCenter defaultCenter] addObserver:self
+   selector:@selector(bluetoothDeviceConnectSuccess:)
+   name:@"BluetoothDeviceConnectSuccessNotification" object:nil];
+   [[NSNotificationCenter defaultCenter] addObserver:self
+   selector:@selector(bluetoothConnectionStatusChanged:)
+   name:@"BluetoothConnectionStatusChangedNotification" object:nil];
+   [[NSNotificationCenter defaultCenter] addObserver:self
+   selector:@selector(bluetoothDeviceDisconnectSuccess:)
+   name:@"BluetoothDeviceDisconnectSuccessNotification" object:nil];
+   */
+
+    // this helped me very much to figure out the methods mentioned the lines
+    // above
     /*
-     // credits to http://stackoverflow.com/a/3738387/1864294 :
-     CFNotificationCenterAddObserver(CFNotificationCenterGetLocalCenter(),
-     NULL,
-     notificationCallback,
-     NULL,
-     NULL,
-     CFNotificationSuspensionBehaviorDeliverImmediately);
-     */
+   // credits to http://stackoverflow.com/a/3738387/1864294 :
+   CFNotificationCenterAddObserver(CFNotificationCenterGetLocalCenter(),
+   NULL,
+   notificationCallback,
+   NULL,
+   NULL,
+   CFNotificationSuspensionBehaviorDeliverImmediately);
+   */
 }
 
-
-void notificationCallback(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo)
+void notificationCallback(CFNotificationCenterRef center, void* observer,
+    CFStringRef name, const void* object,
+    CFDictionaryRef userInfo)
 {
-    if ([(__bridge NSString*)name characterAtIndex:0] == 'B') { // notice only notification they are associated with the BluetoothManager.framework
+    if ([(__bridge NSString*)name characterAtIndex:0] == 'B') { // notice only notification they are associated with the
+        // BluetoothManager.framework
         NSLog(@"Callback detected: \n\t name: %@ \n\t object:%@", name, object);
     }
 }
-
 
 #pragma mark - class methods
 
@@ -111,7 +136,6 @@ void notificationCallback(CFNotificationCenterRef center, void *observer, CFStri
     return [[BluetoothManager sharedInstance] enabled];
 }
 
-
 - (void)turnBluetoothOn
 {
     if (![self bluetoothIsPowered]) {
@@ -119,12 +143,10 @@ void notificationCallback(CFNotificationCenterRef center, void *observer, CFStri
     }
 }
 
-
 - (BOOL)bluetoothIsPowered
 {
     return [[BluetoothManager sharedInstance] powered];
 }
-
 
 - (void)turnBluetoothOff
 {
@@ -134,7 +156,6 @@ void notificationCallback(CFNotificationCenterRef center, void *observer, CFStri
     }
 }
 
-
 - (void)startScan
 {
     if ([self bluetoothIsPowered]) {
@@ -143,12 +164,10 @@ void notificationCallback(CFNotificationCenterRef center, void *observer, CFStri
     }
 }
 
-
 - (BOOL)isScanning
 {
     return [[BluetoothManager sharedInstance] deviceScanningEnabled];
 }
-
 
 - (void)endScan
 {
@@ -156,12 +175,10 @@ void notificationCallback(CFNotificationCenterRef center, void *observer, CFStri
     [self.internalDiscoveredBluetoothDevices removeAllObjects];
 }
 
-
 - (NSArray*)discoveredBluetoothDevices
 {
     return [self.internalDiscoveredBluetoothDevices copy]; // make it immutable
 }
-
 
 #pragma mark - Observer methods
 
@@ -170,16 +187,14 @@ void notificationCallback(CFNotificationCenterRef center, void *observer, CFStri
     [self.observers addObject:observer];
 }
 
-
 - (void)unregisterObserver:(id<MDBluetoothObserverProtocol>)observer
 {
     [self.observers removeObject:observer];
 }
 
-
 #pragma mark - Bluetooth notifications
 
-- (void)bluetoothPowerChanged:(NSNotification *)notification
+- (void)bluetoothPowerChanged:(NSNotification*)notification
 {
     NSLog(@"bluetoothPowerChanged");
 
@@ -188,8 +203,7 @@ void notificationCallback(CFNotificationCenterRef center, void *observer, CFStri
     }
 }
 
-
-- (void)bluetoothAvailabilityChanged:(NSNotification *)notification
+- (void)bluetoothAvailabilityChanged:(NSNotification*)notification
 {
     NSLog(@"bluetoothAvailabilityChanged");
     for (id<MDBluetoothObserverProtocol> observer in self.observers) {
@@ -197,32 +211,27 @@ void notificationCallback(CFNotificationCenterRef center, void *observer, CFStri
     }
 }
 
-
-- (void)bluetoothDeviceDiscovered:(NSNotification *)notification
+- (void)bluetoothDeviceDiscovered:(NSNotification*)notification
 {
     NSLog(@"bluetoothDeviceDiscovered");
-    
-    MDBluetoothDevice *bluetoothDevice = [[MDBluetoothDevice alloc] initWithBluetoothDevice:(BluetoothDevice *)[notification object]];
+
+    MDBluetoothDevice* bluetoothDevice = [[MDBluetoothDevice alloc] initWithBluetoothDevice:(BluetoothDevice*)[notification object]];
     [self.internalDiscoveredBluetoothDevices addObject:bluetoothDevice];
-    
+
     for (id<MDBluetoothObserverProtocol> observer in self.observers) {
         [observer receivedBluetoothNotification:MDBluetoothDeviceDiscoveredNotification];
     }
 }
 
-
-- (void)bluetoothDeviceRemoved:(NSNotification *)notification
+- (void)bluetoothDeviceRemoved:(NSNotification*)notification
 {
     NSLog(@"bluetoothDeviceRemoved");
-    MDBluetoothDevice *bluetoothDevice = [[MDBluetoothDevice alloc] initWithBluetoothDevice:(BluetoothDevice *)[notification object]];
+    MDBluetoothDevice* bluetoothDevice = [[MDBluetoothDevice alloc] initWithBluetoothDevice:(BluetoothDevice*)[notification object]];
     [self.internalDiscoveredBluetoothDevices removeObject:bluetoothDevice];
 
     for (id<MDBluetoothObserverProtocol> observer in self.observers) {
         [observer receivedBluetoothNotification:MDBluetoothDeviceRemovedNotification];
     }
-    
 }
-
-
 
 @end

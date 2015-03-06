@@ -11,6 +11,6 @@
 
 @interface DeviceDetailViewController : UITableViewController
 
-- (void)setBluetoothDevices:(MDBluetoothDevice *)device;
+- (void)setBluetoothDevices:(MDBluetoothDevice*)device;
 
 @end
