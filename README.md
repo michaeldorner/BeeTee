@@ -2,8 +2,6 @@
 
 Demo application for Bluetooth device scanning using the iOS private framework "BluetoothManager"
 
-**[With Xcode 7.3 Apple removed all private frameworks](https://developer.apple.com/library/ios/releasenotes/DeveloperTools/RN-Xcode/Chapters/Introduction.html) from the iOS SDKs, so at the moment it is not working!**
-
 <p align="center">
   <img src ="/landingPage/screencast.gif">
 </p>
@@ -18,6 +16,8 @@ BeeTee offers two approaches, depending on what you want to try:
 
 Based on the [AppStore guideline §2.5](https://developer.apple.com/appstore/resources/approval/guidelines.html) not to use private (undocumented) functions it is not possible to publish apps with the `BluetoothManager.framework` in the AppStore. You may need a valid membership of the [iOS Developer Program](https://developer.apple.com/programs/ios/), because it makes sense that this app and framework does not work in the simulator.
 
+## iOS 9.3 Linking Problem
+[With Xcode 7.3 Apple removed all private frameworks](https://developer.apple.com/library/ios/releasenotes/DeveloperTools/RN-Xcode/Chapters/Introduction.html) from the iOS SDKs, so at the moment it is not working! [Any help on this problem is appreciated](https://github.com/michaeldorner/BeeTee/issues/11)!
 
 
 ##Requirements for this app
