@@ -2,13 +2,15 @@
 
 Demo application for Bluetooth device scanning using the iOS private framework "BluetoothManager"
 
+**[With Xcode 7.3 Apple removed all private frameworks](https://developer.apple.com/library/ios/releasenotes/DeveloperTools/RN-Xcode/Chapters/Introduction.html) from the iOS SDKs, so at the moment it is not working!**
+
 <p align="center">
   <img src ="/landingPage/screencast.gif">
 </p>
 
 ##Abstract
 
-Because it is not trivial to use a private iOS framework, I implemented a demo application for the `BluetoothManager.framework` in ≥ iOS 7.
+Because it is not trivial to use a private iOS framework, I implemented a demo application for the `BluetoothManager.framework` in ≥ iOS 7 and < iOS 9.3.
 
 BeeTee offers two approaches, depending on what you want to try:
 * An wrapper class called `MDBluetoothManager`, where you can easily interact with the underlaying `BluetoothManager.framework` without any deeper knowledge about `BluetoothManager.framework`.
@@ -20,8 +22,8 @@ Based on the [AppStore guideline §2.5](https://developer.apple.com/appstore/res
 
 ##Requirements for this app
 
-* iOS 7 and greater
-* iOS 7 compatible device (does not working on the simulator)
+* iOS version ≥7 and < 9.3
+* iOS compatible device (does not working on the simulator)
 * Xcode 5 and greater
 * Correctly placed header files (see Preparations)
 
