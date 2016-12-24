@@ -97,6 +97,8 @@ I focused on a clear distinction between the different layers, also by using dif
 	    case DeviceConnectSuccess
 	    case ConnectionStatusChanged
 	    case DeviceDisconnectSuccess
+	    
+	    static let allNotifications: [BeeTeeNotification]
 	}
 
 So all known notification from `BluetoothManager.framework` are passed through (see next section). I used only `PowerChanged`, `DeviceDiscovered`, `DeviceRemoved` in my demo application.
