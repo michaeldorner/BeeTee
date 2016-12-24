@@ -16,7 +16,7 @@ Besides BeeTee demonstrates how to access the private `BluetoothManager.framewor
 - [Installation](#installation)
 - [Usage](#usage)
 - [API](#api)
-- [Discussion](#discussion)
+- [Known Issues](#known issues)
 - [Contributions](#contributions)
 - [Versions](#versions)
 - [License](#license)
@@ -161,9 +161,11 @@ or with in `BeeTee`:
 	beeTee.debugLowLevel()
 
 
-## Discussion
+## Known Issues
 
-Actually I wanted to encapsulate BeeTee in a formal framework. But it seems that [Swift does not allow framework-internal (protected) Objective-C code](http://stackoverflow.com/questions/41303716/objective-c-code-swift-framework-internal). 
+* Actually I wanted to encapsulate BeeTee in a formal framework. But it seems that [Swift does not allow framework-internal (protected) Objective-C code](http://stackoverflow.com/questions/41303716/objective-c-code-swift-framework-internal). 
+
+* Some notifications are sent multiple times. I do not know if this is an issue of _BeeTee_ or meant to be. 
 
 If you have problems make this project running have a look at [Stackoverflow](http://stackoverflow.com/search?q=beetee). If you have other questions or suggestions, feel free to contact me here in GitHub or somehow else. :-)
 
@@ -182,7 +184,7 @@ Help is welcome! If you do not know what to do, just pick one item and send me a
 
 ## Versions
 
-### 3.0
+### 3.0 beta
 * Rewritten in Swift 3
 * New API
 * Clear separation of Objective-C and Swift code
