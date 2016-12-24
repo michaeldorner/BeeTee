@@ -5,22 +5,26 @@
 import Foundation
 
 
-public enum BeeTeeNotification {
-    case PowerChanged
-    case AvailabilityChanged
-    case DeviceDiscovered
-    case DeviceRemoved
-    case ConnectabilityChanged
-    case DeviceUpdated
-    case DiscoveryStateChanged
-    case DeviceConnectSuccess
-    case ConnectionStatusChanged
-    case DeviceDisconnectSuccess
+public enum BeeTeeNotification: String {
+    case PowerChanged               = "BluetoothPowerChangedNotification"
+    case AvailabilityChanged        = "BluetoothAvailabilityChangedNotification"
+    case DeviceDiscovered           = "BluetoothDeviceDiscoveredNotification"
+    case DeviceRemoved              = "BluetoothDeviceRemovedNotification"
+    case ConnectabilityChanged      = "BluetoothConnectabilityChangedNotification"
+    case DeviceUpdated              = "BluetoothDeviceUpdatedNotification"
+    case DiscoveryStateChanged      = "BluetoothDiscoveryStateChangedNotification"
+    case DeviceConnectSuccess       = "BluetoothDeviceConnectSuccessNotification"
+    case ConnectionStatusChanged    = "BluetoothConnectionStatusChangedNotification"
+    case DeviceDisconnectSuccess    = "BluetoothDeviceDisconnectSuccessNotification"
+    
+    static let allNotifications: [BeeTeeNotification] = [.PowerChanged, .AvailabilityChanged, .DeviceDiscovered, .DeviceRemoved, .ConnectabilityChanged, .DeviceUpdated, .DiscoveryStateChanged, .DeviceConnectSuccess, .ConnectionStatusChanged, .DeviceDisconnectSuccess]
 }
+
 
 public protocol BeeTeeDelegate {
     func receivedBeeTeeNotification(notification: BeeTeeNotification)
 }
+
 
 
 public class BeeTee {
@@ -41,66 +45,24 @@ public class BeeTee {
     }
     
     init() {
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BluetoothPowerChangedNotification"), object: nil, queue: OperationQueue.main) { (notification) in
-            print("BluetoothPowerChangedNotification")
-        }
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BluetoothAvailabilityChangedNotification"), object: nil, queue: OperationQueue.main) { (notification) in
-            print("BluetoothAvailabilityChangedNotification")
-        }
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BluetoothDeviceDiscoveredNotification"), object: nil, queue: OperationQueue.main) { (notification) in
-            print("BluetoothDeviceDiscoveredNotification")
-            let bluetoothDevice = BluetoothDeviceHandler(notification: notification)!
-            
-            let beeTeeDevice = BeeTeeDevice(name: bluetoothDevice.name, address: bluetoothDevice.address, majorClass: bluetoothDevice.majorClass, minorClass: bluetoothDevice.minorClass, type: bluetoothDevice.type, supportsBatteryLevel: bluetoothDevice.supportsBatteryLevel, detectingDate: Date())
-            self.devices.insert(beeTeeDevice)
-            self.delegate?.receivedBeeTeeNotification(notification: BeeTeeNotification.DeviceDiscovered)
-        }
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BluetoothDeviceRemovedNotification"), object: nil, queue: OperationQueue.main) { (notification) in
-            print("BluetoothDeviceRemovedNotification")
-            let bluetoothDevice = BluetoothDeviceHandler(notification: notification)!
-            
-            let beeTeeDevice = BeeTeeDevice(name: bluetoothDevice.name, address: bluetoothDevice.address, majorClass: bluetoothDevice.majorClass, minorClass: bluetoothDevice.minorClass, type: bluetoothDevice.type, supportsBatteryLevel: bluetoothDevice.supportsBatteryLevel, detectingDate: Date())
-            self.devices.remove(beeTeeDevice)
-            self.delegate?.receivedBeeTeeNotification(notification: BeeTeeNotification.DeviceRemoved)
-        }
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BluetoothConnectabilityChangedNotification"), object: nil, queue: OperationQueue.main) { (notification) in
-            print("BluetoothConnectabilityChangedNotification")
-            self.delegate?.receivedBeeTeeNotification(notification: BeeTeeNotification.ConnectabilityChanged)
-        }
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BluetoothDeviceUpdatedNotification"), object: nil, queue: OperationQueue.main) { (notification) in
-            print("BluetoothDeviceUpdatedNotification")
-            self.delegate?.receivedBeeTeeNotification(notification: BeeTeeNotification.DeviceUpdated)
-        }
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BluetoothDiscoveryStateChangedNotification"), object: nil, queue: OperationQueue.main) { (notification) in
-            print("BluetoothDiscoveryStateChangedNotification")
-            self.delegate?.receivedBeeTeeNotification(notification: BeeTeeNotification.DiscoveryStateChanged)
-        }
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BluetoothDeviceDiscoveredNotification"), object: nil, queue: OperationQueue.main) { (notification) in
-            print("BluetoothDeviceDiscoveredNotification")
-            self.delegate?.receivedBeeTeeNotification(notification: BeeTeeNotification.ConnectabilityChanged)
-        }
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BluetoothDeviceConnectSuccessNotification"), object: nil, queue: OperationQueue.main) { (notification) in
-            print("BluetoothDeviceConnectSuccessNotification")
-            self.delegate?.receivedBeeTeeNotification(notification: BeeTeeNotification.DeviceConnectSuccess)
-        }
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BluetoothConnectionStatusChangedNotification"), object: nil, queue: OperationQueue.main) { (notification) in
-            print("BluetoothConnectionStatusChangedNotification")
-            self.delegate?.receivedBeeTeeNotification(notification: BeeTeeNotification.ConnectionStatusChanged)
-        }
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BluetoothDeviceDisconnectSuccessNotification"), object: nil, queue: OperationQueue.main) { (notification) in
-            print("BluetoothDeviceDisconnectSuccessNotification")
-            self.delegate?.receivedBeeTeeNotification(notification: BeeTeeNotification.DeviceDisconnectSuccess)
+        for beeTeeNotification in BeeTeeNotification.allNotifications {
+            print("registered \(beeTeeNotification)")
+            NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: beeTeeNotification.rawValue), object: nil, queue: OperationQueue.current) { (notification) in
+                switch beeTeeNotification {
+                case .DeviceDiscovered:
+                    let bluetoothDevice = BluetoothDeviceHandler(notification: notification)!
+                    let beeTeeDevice = BeeTeeDevice(name: bluetoothDevice.name, address: bluetoothDevice.address, majorClass: bluetoothDevice.majorClass, minorClass: bluetoothDevice.minorClass, type: bluetoothDevice.type, supportsBatteryLevel: bluetoothDevice.supportsBatteryLevel, detectingDate: Date())
+                    self.devices.insert(beeTeeDevice)
+                case .DeviceRemoved:
+                    let bluetoothDevice = BluetoothDeviceHandler(notification: notification)!
+                    let beeTeeDevice = BeeTeeDevice(name: bluetoothDevice.name, address: bluetoothDevice.address, majorClass: bluetoothDevice.majorClass, minorClass: bluetoothDevice.minorClass, type: bluetoothDevice.type, supportsBatteryLevel: bluetoothDevice.supportsBatteryLevel, detectingDate: Date())
+                    self.devices.remove(beeTeeDevice)
+                default:
+                    break
+                }
+                print(notification)
+                self.delegate?.receivedBeeTeeNotification(notification: beeTeeNotification)
+            }
         }
     }
     

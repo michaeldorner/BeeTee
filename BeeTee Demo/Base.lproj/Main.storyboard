@@ -38,9 +38,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jlp-x4-mkm">
-                                <rect key="frame" x="165" y="280" width="44" height="30"/>
+                                <rect key="frame" x="170" y="280" width="35" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Status"/>
+                                <state key="normal" title="Scan"/>
                                 <connections>
                                     <action selector="pressStatus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cux-GH-E9Q"/>
                                 </connections>
