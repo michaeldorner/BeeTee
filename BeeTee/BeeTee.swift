@@ -47,7 +47,8 @@ public class BeeTee {
     init() {
         for beeTeeNotification in BeeTeeNotification.allNotifications {
             print("registered \(beeTeeNotification)")
-            NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: beeTeeNotification.rawValue), object: nil, queue: OperationQueue.current) { (notification) in
+            
+            NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: beeTeeNotification.rawValue), object: nil, queue: OperationQueue.main) { (notification) in
                 switch beeTeeNotification {
                 case .DeviceDiscovered:
                     let bluetoothDevice = BluetoothDeviceHandler(notification: notification)!
@@ -60,7 +61,7 @@ public class BeeTee {
                 default:
                     break
                 }
-                print(notification)
+                print(beeTeeNotification)
                 self.delegate?.receivedBeeTeeNotification(notification: beeTeeNotification)
             }
         }
@@ -103,5 +104,9 @@ public class BeeTee {
                                         nil,
                                         nil,
                                         .deliverImmediately)
+    }
+    
+    deinit {
+        //remove all observers
     }
 }
