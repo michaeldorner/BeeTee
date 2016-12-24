@@ -24,9 +24,9 @@ Besides BeeTee demonstrates how to access the private `BluetoothManager.framewor
 
 ## Limitations
 
-Based on the [AppStore guideline §2.5](https://developer.apple.com/appstore/resources/approval/guidelines.html) on private (undocumented) functions it is not possible to publish apps with the `BeeTee.framework` and `BluetoothManager.framework` in the AppStore. 
+Based on the [AppStore guideline §2.5](https://developer.apple.com/appstore/resources/approval/guidelines.html) on private (undocumented) functions it is not possible to publish apps with the _BeeTee_ and `BluetoothManager.framework` in the AppStore. 
 
-You need a valid membership of the [iOS Developer Program](https://developer.apple.com/programs/ios/), because the `BeeTee.framework` does not work in the simulator.
+You need a valid membership of the [iOS Developer Program](https://developer.apple.com/programs/ios/), because the _BeeTee_ does not work in the simulator.
 
 Connecting to devices is not possible in most cases and, therefore, not yet supported. 
 
