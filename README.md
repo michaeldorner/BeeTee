@@ -1,129 +1,203 @@
-#BeeTee
-
-Demo application for Bluetooth device scanning using the iOS private framework "BluetoothManager"
-
-<p align="center">
-  <img src ="/landingPage/screencast.gif">
-</p>
-
-##Abstract
-
-Because it is not trivial to use a private iOS framework, I implemented a demo application for the `BluetoothManager.framework` in ≥ iOS 7 and < iOS 9.3.
-
-BeeTee offers two approaches, depending on what you want to try:
-* An wrapper class called `MDBluetoothManager`, where you can easily interact with the underlaying `BluetoothManager.framework` without any deeper knowledge about `BluetoothManager.framework`.
-* Because all of my implementation is open, you can study the underlaying `BluetoothManager.framework` and how it works - but look out, it is not trivial.
-
-Based on the [AppStore guideline §2.5](https://developer.apple.com/appstore/resources/approval/guidelines.html) not to use private (undocumented) functions it is not possible to publish apps with the `BluetoothManager.framework` in the AppStore. You may need a valid membership of the [iOS Developer Program](https://developer.apple.com/programs/ios/), because it makes sense that this app and framework does not work in the simulator.
-
-## iOS 9.3 Linking Problem
-[With Xcode 7.3 Apple removed all private frameworks](https://developer.apple.com/library/ios/releasenotes/DeveloperTools/RN-Xcode/Chapters/Introduction.html) from the iOS SDKs, so at the moment it is not working! [Any help on this problem is appreciated](https://github.com/michaeldorner/BeeTee/issues/11)!
+![Swift](http://img.shields.io/badge/swift-3.0-brightgreen.svg)
+[![codebeat badge](https://codebeat.co/badges/65bf4b44-cbbc-4807-a9e9-b3cd68c4378d)](https://codebeat.co/projects/github-com-michaeldorner-beetee)
+[![DUB](https://img.shields.io/dub/l/vibe-d.svg)]()
 
 
-##Requirements for this app
+# BeeTee
 
-* iOS version ≥7 and < 9.3
-* iOS compatible device (does not working on the simulator)
-* Xcode 5 and greater
-* Correctly placed header files (see Preparations)
+> BeeTee is an easy to use Swift framework, that allows simple access to the Bluetooth classic in iOS for turning on/off and scanning for Bluetooth devices. 
 
-Except the GUI the app and the framework as well works also fine for iOS 5 and 6. But take care about the path (see next paragraph).
-
-##Preparations
-
-Just to clearify: Of course, since they are just two header files, it does not matter actually where the header files are placed in your project. But if you want to use the `BluetoothManager.framework` in other projects, it makes life easier just to import  the framework with the headers. 
-
-* Find the folder, e.g. by terminal
-<pre><code>open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/PrivateFrameworks/BluetoothManager.framework</code></pre>
-* Extract the [Headers.zip](/Headers.zip) archive and add the extracted folder `Headers` which includes `BluetoothManager.h` and `BluetoothDevice.h` in the directory above.
-* Restart Xcode
-* Now you will find the `BluetoothManager.framework` in Targets → YourApp → Build Phases → Link Binary With Libraries:
-![Alt text](/landingPage/linkLibrary.png)
-
-The folder can differ: Please take care about your iOS version!
-
-For iOS 8 or later you can use [a new bash script](/checkheaders.sh). This bash script checks if you have put your files correctly. just run it in the terminal with
-`bash path/to/the/bashscript/checkheaders.sh`
+Besides BeeTee demonstrates how to access the private `BluetoothManager.framework` in iOS. 
 
 
-##Versions
-###2.0
+## Table of Contents
+
+- [Limitations](#limitations)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API](#api)
+- [Discussion](#discussion)
+- [Contributions](#contributions)
+- [Versions](#versions)
+- [License](#license)
+
+
+## Limitations
+
+Based on the [AppStore guideline §2.5](https://developer.apple.com/appstore/resources/approval/guidelines.html) on private (undocumented) functions it is not possible to publish apps with the `BeeTee.framework` and `BluetoothManager.framework` in the AppStore. 
+
+You need a valid membership of the [iOS Developer Program](https://developer.apple.com/programs/ios/), because the `BeeTee.framework` does not work in the simulator.
+
+Connecting to devices is not possible in most cases and, therefore, not yet supported. 
+
+There are currently no known limitations on iOS versions. 
+
+
+## Installation
+
+Copy all files in the _BeeTee_ folder to your project and done. That means there are 9 files to copy:
+
+* `BluetoothDevice.h`
+* `BluetoothManager.h`
+* `BluetoothDeviceHandler.h`
+* `BluetoothDeviceHandler.m`
+* `BluetoothManagerHandler.h`
+* `BluetoothManagerHandler.m`
+* `BeeTee-Bridge-Header.h`
+* `BeeTee.swift`
+* `BeeTeeDevice.swift`
+
+
+## Usage
+
+Here is a small code snippet, which shows how simple 
+
+	class Demo: BeeTeeDelegate {
+	    let beeTee = BeeTee()
+	    
+	   init() {
+	        beeTee.delegate = self
+	        beeTee.turnBluetoothOn()
+	        beeTee.startScanForDevices()
+	    }
+	    
+	    func receivedBeeTeeNotification(notification: BeeTeeNotification) {
+	        switch notification {
+	        case .DeviceDiscovered:
+	            for device in beeTee.availableDevices {
+	                print(device)
+	            }
+	        default:
+	            print(notification)
+	        }
+	    }
+	}
+
+
+## API
+
+### BeeTee
+
+The API is based on the other hardware managers, such as [`CLLocationManager`](https://developer.apple.com/reference/corelocation/cllocationmanager) or the underlaying `BluetoothManager.framework`. 
+
+I focused on a clear distinction between the different layers, also by using different programming languages:
+
+![Layer architecture of BeeTee](landingPage/BeeTeeLayer.png)
+
+#### `BeeTeeNotification`
+
+	public enum BeeTeeNotification {
+	    case PowerChanged
+	    case AvailabilityChanged
+	    case DeviceDiscovered
+	    case DeviceRemoved
+	    case ConnectabilityChanged
+	    case DeviceUpdated
+	    case DiscoveryStateChanged
+	    case DeviceConnectSuccess
+	    case ConnectionStatusChanged
+	    case DeviceDisconnectSuccess
+	}
+
+So all known notification from `BluetoothManager.framework` are passed through (see next section). I used only `PowerChanged`, `DeviceDiscovered`, `DeviceRemoved` in my demo application.
+
+#### `BeeTeeDelegate`
+
+	public protocol BeeTeeDelegate {
+	    func receivedBeeTeeNotification(notification: BeeTeeNotification)
+	}
+
+#### `BeeTee`
+
+	public class BeeTee {
+		public var delegate: BeeTeeDelegate?
+		public var availableDevices: [BeeTeeDevice]
+		convenience init(delegate: BeeTeeDelegate)
+		public func turnBluetoothOn()
+		public func turnBluetoothOff()
+		public func bluetoothIsOn() -> Bool
+		public func startScanForDevices()
+		public func stopScan()
+		public func isScanning() -> Bool
+		public func debugLowLevel() // see section BluetoothManager.framework/Available Notification
+	}
+
+
+### `BluetoothManager.framework`
+
+If you want to dive deeper into `BluetoothManager.framework` this section is interesting for you. 
+
+#### Available Notifications
+
+I found the following notification regarding Bluetooth
+
+    BluetoothAvailabilityChangedNotification
+    BluetoothDiscoveryStateChangedNotification
+    BluetoothDeviceDiscoveredNotification
+    BluetoothDeviceRemovedNotification
+    BluetoothPowerChangedNotification
+    BluetoothConnectabilityChangedNotification
+    BluetoothDeviceUpdatedNotification
+    BluetoothDeviceConnectSuccessNotification
+    BluetoothConnectionStatusChangedNotification
+    BluetoothDeviceDisconnectSuccessNotification
+    
+Maybe the list is not complete. You can look for them youself using
+
+	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
+	        nil,
+	        { (_, observer, name, _, _) in
+	            let n = name?.rawValue as! String
+	            if n.hasPrefix("B") { // notice only notification they are associated with the BluetoothManager.framework
+	                print("Received notification: \(name)")
+	            }
+	        },
+	        nil,
+	        nil,
+	        .deliverImmediately)
+or with in `BeeTee`:
+
+	let beeTee = BeeTee()
+	beeTee.debugLowLevel()
+
+
+## Discussion
+
+Actually I wanted to encapsulate BeeTee in a formal framework. But it seems that [Swift does not allow framework-internal (protected) Objective-C code](http://stackoverflow.com/questions/41303716/objective-c-code-swift-framework-internal). 
+
+If you have problems make this project running have a look at [Stackoverflow](http://stackoverflow.com/search?q=beetee). If you have other questions or suggestions, feel free to contact me here in GitHub or somehow else. :-)
+
+
+## Contributions
+
+Help is welcome! If you do not know what to do, just pick one item and send me a pull request.
+
+- [ ] Provide a more detailed introduction to _BeeTee_ installation
+- [ ] Restructure BeeTee in a framework (`BeeTee.framework`, see [discussion on stackoverflow](http://stackoverflow.com/questions/41303716/objective-c-code-swift-framework-internal))
+- [ ] Write test cases
+- [ ] Support Cocoapods
+- [ ] Improve documentation, especially inline documentation
+- [ ] Support Travis (if possible, because of private framework usage)
+
+
+## Versions
+
+### 3.0
+* Rewritten in Swift 3
+* New API
+* Clear separation of Objective-C and Swift code
+* Dynamically loading of `Bluetooth.framework` (so no more header and import trouble)
+* Released now under MIT license
+
+### 2.0
 * Wrapper classes `MDBluetoothManager` and `MDBluetoothDevice` introduced 
 * Updated to ARC
 * Extented GUI
 
-###1.0
+### 1.0
 * Initial Commit as demo project for `BluetoothManager.framework`, Non-ARC
 
 
-##The `MDBluetoothManager`
-Although all of my code is open source, I wrote a wrapper class which abstracts the `BluetoothManager.framework` for an easy handling.
-The wrapper interface of this class is quite tiny:
+## License 
 
-    @interface MDBluetoothManager : NSObject
-
-    + (MDBluetoothManager *)sharedInstance;
-    - (BOOL)bluetoothIsAvailable; // is Bluetooth in general available?
-    
-    // control Bluetooth
-    - (void)turnBluetoothOn; 
-    - (BOOL)bluetoothIsPowered;
-    - (void)turnBluetoothOff;
-    
-    // handling scans and its results
-    - (void)startScan;
-    - (BOOL)isScanning;
-    - (void)endScan;
-    - (NSArray*)discoveredBluetoothDevices;
-    
-    // (un)register observers, which listen to MDBluetoothNotifications and implement the MDBluetoothObserverProtocol
-    - (void)registerObserver:(id<MDBluetoothObserverProtocol>)observer;
-    - (void)unregisterObserver:(id<MDBluetoothObserverProtocol>)observer;
-    @end
-
-The protocol `MDBluetoothObserverProtocol` requires an implementation of the method
-
-    - (void)receivedBluetoothNotification:(MDBluetoothNotification)bluetoothNotification;
-
-In that method you can handle the reaction to the Bluetooth notifications.
-
-
-
-##The `BluetoothManager.framework`
-
-If you want to dive deeper into `BluetoothManager.framework` this section is interesting for you. 
-
-####Available Notifications
-    BluetoothAvailabilityChangedNotification
-    BluetoothDiscoveryStateChangedNotification
-
-    BluetoothDeviceDiscoveredNotification
-    BluetoothDeviceRemovedNotification
-    
-    // more methods they are not used in this app
-    BluetoothPowerChangedNotification
-    BluetoothConnectabilityChangedNotification
-    BluetoothDeviceUpdatedNotification
-
-    BluetoothDeviceConnectSuccessNotification
-    BluetoothConnectionStatusChangedNotification
-    BluetoothDeviceDisconnectSuccessNotification
-
-
-####Usage
-
-Can be used e.g. 
-<pre><code>[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bluetoothAvailabilityChanged:) name:@"BluetoothAvailabilityChangedNotification" object:nil];</code></pre>
-and 
-<pre><code>- (void)bluetoothAvailabilityChanged:(NSNotification *)notification { ... }</code></pre>
-
-
-##Troubleshooting
-If you have problems make this project running have a look at [Stackoverflow](http://stackoverflow.com/search?q=beetee). If you have other questions or suggestions, feel free to contact me here in GitHub or somehow else. :-)
-
-
-##Licence
-GPL (v3)
-
-
-
+BeeTee is released under the MIT license. See [LICENSE](LICENSE) for more details.
