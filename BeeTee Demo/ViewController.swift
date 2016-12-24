@@ -58,7 +58,7 @@ class ViewController: UIViewController, BeeTeeDelegate {
         beeTee.startScanForDevices()
     }
     
-    func receivedBeeTeeNotificaion(notification: BeeTeeNotification) {
+    func receivedBeeTeeNotification(notification: BeeTeeNotification) {
         if notification == .DeviceDiscovered {
             let a = beeTee.availableDevices;
             for d in a {
