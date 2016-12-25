@@ -17,8 +17,9 @@ public enum BeeTeeNotification: String {
     case ConnectionStatusChanged    = "BluetoothConnectionStatusChangedNotification"
     case DeviceDisconnectSuccess    = "BluetoothDeviceDisconnectSuccessNotification"
     
-    static let allNotifications: [BeeTeeNotification] = [.PowerChanged, .AvailabilityChanged, .DeviceDiscovered, .DeviceRemoved, .ConnectabilityChanged, .DeviceUpdated, .DiscoveryStateChanged, .DeviceConnectSuccess, .ConnectionStatusChanged, .DeviceDisconnectSuccess]
+    public static let allNotifications: [BeeTeeNotification] = [.PowerChanged, .AvailabilityChanged, .DeviceDiscovered, .DeviceRemoved, .ConnectabilityChanged, .DeviceUpdated, .DiscoveryStateChanged, .DeviceConnectSuccess, .ConnectionStatusChanged, .DeviceDisconnectSuccess]
 }
+
 
 
 public protocol BeeTeeDelegate {
@@ -29,15 +30,16 @@ public protocol BeeTeeDelegate {
 
 public class BeeTee {
     
-    private let bluetoothManagerHandler = BluetoothManagerHandler.sharedInstance()!
-    private var devices = Set<BeeTeeDevice>()
-    
     public var delegate: BeeTeeDelegate? = nil
     public var availableDevices: [BeeTeeDevice] {
         get {
             return Array(devices)
         }
     }
+    
+    private let bluetoothManagerHandler = BluetoothManagerHandler.sharedInstance()!
+    private var devices = Set<BeeTeeDevice>()
+    private var observers = [NSObjectProtocol]()
     
     convenience init(delegate: BeeTeeDelegate) {
         self.init()
@@ -48,7 +50,7 @@ public class BeeTee {
         for beeTeeNotification in BeeTeeNotification.allNotifications {
             print("registered \(beeTeeNotification)")
             
-            NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: beeTeeNotification.rawValue), object: nil, queue: OperationQueue.main) { (notification) in
+            let observer = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: beeTeeNotification.rawValue), object: nil, queue: OperationQueue.main) { (notification) in
                 switch beeTeeNotification {
                 case .DeviceDiscovered:
                     let bluetoothDevice = BluetoothDeviceHandler(notification: notification)!
@@ -64,6 +66,13 @@ public class BeeTee {
                 print(beeTeeNotification)
                 self.delegate?.receivedBeeTeeNotification(notification: beeTeeNotification)
             }
+            observers.append(observer)
+        }
+    }
+    
+    deinit {
+        for observer in observers {
+            NotificationCenter.default.removeObserver(observer)
         }
     }
     
@@ -104,9 +113,5 @@ public class BeeTee {
                                         nil,
                                         nil,
                                         .deliverImmediately)
-    }
-    
-    deinit {
-        //remove all observers
     }
 }

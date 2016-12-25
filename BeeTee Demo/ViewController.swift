@@ -41,7 +41,7 @@ class ViewController: UIViewController, BeeTeeDelegate {
     }
     
     func receivedBeeTeeNotification(notification: BeeTeeNotification) {
-        print(notification)
+        //print(notification)
     }
 }
 
