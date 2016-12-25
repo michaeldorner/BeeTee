@@ -53,12 +53,10 @@ public class BeeTee {
             let observer = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: beeTeeNotification.rawValue), object: nil, queue: OperationQueue.main) { (notification) in
                 switch beeTeeNotification {
                 case .DeviceDiscovered:
-                    let bluetoothDevice = BluetoothDeviceHandler(notification: notification)!
-                    let beeTeeDevice = BeeTeeDevice(name: bluetoothDevice.name, address: bluetoothDevice.address, majorClass: bluetoothDevice.majorClass, minorClass: bluetoothDevice.minorClass, type: bluetoothDevice.type, supportsBatteryLevel: bluetoothDevice.supportsBatteryLevel, detectingDate: Date())
+                    let beeTeeDevice = self.extractBeeTeeDevice(from: notification)
                     self.devices.insert(beeTeeDevice)
                 case .DeviceRemoved:
-                    let bluetoothDevice = BluetoothDeviceHandler(notification: notification)!
-                    let beeTeeDevice = BeeTeeDevice(name: bluetoothDevice.name, address: bluetoothDevice.address, majorClass: bluetoothDevice.majorClass, minorClass: bluetoothDevice.minorClass, type: bluetoothDevice.type, supportsBatteryLevel: bluetoothDevice.supportsBatteryLevel, detectingDate: Date())
+                    let beeTeeDevice = self.extractBeeTeeDevice(from: notification)
                     self.devices.remove(beeTeeDevice)
                 default:
                     break
@@ -113,5 +111,11 @@ public class BeeTee {
                                         nil,
                                         nil,
                                         .deliverImmediately)
+    }
+    
+    private func extractBeeTeeDevice(from notification: Notification) -> BeeTeeDevice {
+        let bluetoothDevice = BluetoothDeviceHandler(notification: notification)!
+        let beeTeeDevice = BeeTeeDevice(name: bluetoothDevice.name, address: bluetoothDevice.address, majorClass: bluetoothDevice.majorClass, minorClass: bluetoothDevice.minorClass, type: bluetoothDevice.type, supportsBatteryLevel: bluetoothDevice.supportsBatteryLevel, detectingDate: Date())
+        return beeTeeDevice
     }
 }

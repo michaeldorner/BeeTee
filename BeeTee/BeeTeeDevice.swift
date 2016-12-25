@@ -14,6 +14,11 @@ public class BeeTeeDevice: Hashable, CustomStringConvertible {
     let supportsBatteryLevel: Bool
     let detectingDate: Date
     
+    convenience init(notification: Notification) {
+        let bluetoothDevice = BluetoothDeviceHandler(notification: notification)!
+        self.init(name: bluetoothDevice.name, address: bluetoothDevice.address, majorClass: bluetoothDevice.majorClass, minorClass: bluetoothDevice.minorClass, type: bluetoothDevice.type, supportsBatteryLevel: bluetoothDevice.supportsBatteryLevel, detectingDate: Date())
+    }
+    
     init(name: String, address: String, majorClass: UInt, minorClass: UInt, type: Int, supportsBatteryLevel: Bool, detectingDate: Date) {
         self.name = name
         self.address = address
