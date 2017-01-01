@@ -52,7 +52,7 @@ Copy all files in the _BeeTee_ folder to your project and done. That means there
 
 ## Usage
 
-Here is a small code snippet, which shows how simple 
+Here is a small code snippet, how easily you can use _BeeTee_:
 
 	class Demo: BeeTeeDelegate {
 	    let beeTee = BeeTee()
