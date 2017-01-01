@@ -33,57 +33,55 @@ public class BeeTee {
     public var delegate: BeeTeeDelegate? = nil
     public var availableDevices: [BeeTeeDevice] {
         get {
-            return Array(devices)
+            return Array(_availableDevices)
         }
     }
     
     private let bluetoothManagerHandler = BluetoothManagerHandler.sharedInstance()!
-    private var devices = Set<BeeTeeDevice>()
-    private var observers = [NSObjectProtocol]()
+    private var _availableDevices = Set<BeeTeeDevice>()
+    private var tokenCache = [BeeTeeNotification: NSObjectProtocol]()
     
-    convenience init(delegate: BeeTeeDelegate) {
-        self.init()
-        self.delegate = delegate
-    }
-    
-    init() {
+    public init() {
+        
         for beeTeeNotification in BeeTeeNotification.allNotifications {
-            print("registered \(beeTeeNotification)")
+            print("Registered \(beeTeeNotification)")
             
-            let observer = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: beeTeeNotification.rawValue), object: nil, queue: OperationQueue.main) { (notification) in
+            let notification = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: beeTeeNotification.rawValue), object: nil, queue: OperationQueue.main) { [unowned self] (notification) in
+                let beeTeeNotification = BeeTeeNotification.init(rawValue: notification.name.rawValue)!
                 switch beeTeeNotification {
                 case .DeviceDiscovered:
                     let beeTeeDevice = self.extractBeeTeeDevice(from: notification)
-                    self.devices.insert(beeTeeDevice)
+                    self._availableDevices.insert(beeTeeDevice)
                 case .DeviceRemoved:
                     let beeTeeDevice = self.extractBeeTeeDevice(from: notification)
-                    self.devices.remove(beeTeeDevice)
+                    self._availableDevices.remove(beeTeeDevice)
                 default:
                     break
                 }
-                print(beeTeeNotification)
-                self.delegate?.receivedBeeTeeNotification(notification: beeTeeNotification)
+                if (self.delegate != nil) {
+                    self.delegate?.receivedBeeTeeNotification(notification: beeTeeNotification)
+                }
             }
-            observers.append(observer)
+            self.tokenCache[beeTeeNotification] = notification
         }
     }
     
     deinit {
-        for observer in observers {
-            NotificationCenter.default.removeObserver(observer)
+        for key in tokenCache.keys {
+            NotificationCenter.default.removeObserver(tokenCache[key]!)
         }
     }
     
-    public func turnBluetoothOn() {
-        bluetoothManagerHandler.setPower(true)
+    public func enableBluetooth() {
+        bluetoothManagerHandler.enable()
     }
     
-    public func turnBluetoothOff() {
-        bluetoothManagerHandler.setPower(false)
+    public func disableBluetooth() {
+        bluetoothManagerHandler.disable()
     }
 
-    public func bluetoothIsOn() -> Bool {
-        return bluetoothManagerHandler.powered()
+    public func bluetoothIsEnabled() -> Bool {
+        return bluetoothManagerHandler.enabled()
     }
     
     public func startScanForDevices() {
@@ -92,14 +90,15 @@ public class BeeTee {
     
     public func stopScan() {
         bluetoothManagerHandler.stopScan()
+        resetAvailableDevices()
     }
     
     public func isScanning() -> Bool {
         return bluetoothManagerHandler.isScanning()
     }
     
-    public func debugLowLevel() {
-        NSLog("This is a dirty C hack and only for demonstration and deep debugging, but not for production.") // credits to http://stackoverflow.com/a/3738387/1864294
+    public static func debugLowLevel() {
+        print("This is a dirty C hack and only for demonstration and deep debugging, but not for production.") // credits to http://stackoverflow.com/a/3738387/1864294
         CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
                                         nil,
                                         { (_, observer, name, _, _) in
@@ -113,9 +112,14 @@ public class BeeTee {
                                         .deliverImmediately)
     }
     
+    private func resetAvailableDevices() {
+        _availableDevices.removeAll()
+    }
+    
     private func extractBeeTeeDevice(from notification: Notification) -> BeeTeeDevice {
         let bluetoothDevice = BluetoothDeviceHandler(notification: notification)!
         let beeTeeDevice = BeeTeeDevice(name: bluetoothDevice.name, address: bluetoothDevice.address, majorClass: bluetoothDevice.majorClass, minorClass: bluetoothDevice.minorClass, type: bluetoothDevice.type, supportsBatteryLevel: bluetoothDevice.supportsBatteryLevel, detectingDate: Date())
         return beeTeeDevice
     }
 }
+

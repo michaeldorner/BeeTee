@@ -15,5 +15,7 @@
 - (void) stopScan;
 - (bool) isScanning;
 - (bool) enabled;
+- (void) disable;
+- (void) enable;
 
 @end

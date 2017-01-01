@@ -57,4 +57,12 @@ static BluetoothManagerHandler *_handler = nil;
     return [_bluetoothManager enabled];
 }
 
+- (void)disable {
+    [_bluetoothManager setEnabled:false];
+}
+
+- (void)enable {
+    [_bluetoothManager setEnabled:true];
+}
+
 @end
