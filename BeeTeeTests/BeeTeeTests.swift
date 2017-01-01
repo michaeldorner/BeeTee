@@ -9,7 +9,10 @@ class BeeTeeTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let beeTee = BeeTee()
+        for device in beeTee.availableDevices {
+            print(device)
+        }
     }
     
     override func tearDown() {
