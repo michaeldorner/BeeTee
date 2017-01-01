@@ -168,7 +168,7 @@ or with in `BeeTee`:
 
 * Actually I wanted to encapsulate BeeTee in a formal framework. But it seems that [Swift does not allow framework-internal (protected) Objective-C code](http://stackoverflow.com/questions/41303716/objective-c-code-swift-framework-internal). 
 
-* Some notifications are sent multiple times, when the `deinit` is not called. I am not sure how to deal with it. 
+* Some notifications are sent multiple times ([issue](https://github.com/michaeldorner/BeeTee/issues/13)). I am not sure how to deal with it. 
 
 If you have problems make this project running have a look at [Stackoverflow](http://stackoverflow.com/search?q=beetee). If you have other questions or suggestions, feel free to contact me here in GitHub or somehow else. :-)
 
