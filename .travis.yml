@@ -10,4 +10,4 @@ script:
 - xcodebuild -project BeeTee.xcodeproj -scheme "BeeTee iOS" -destination "platform=iOS Simulator,name=iPhone 7" build test
 
 after_success:
-- bash <(curl -s https://codecov.io/bash)  -J 'BeeTee'
+- bash <(curl -s https://codecov.io/bash)
