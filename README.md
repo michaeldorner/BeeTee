@@ -118,7 +118,7 @@ So all known notification from `BluetoothManager.framework` are passed through (
 		public var availableDevices: [BeeTeeDevice]
 		convenience init(delegate: BeeTeeDelegate)
 		public func enableBluetooth()
-		public func disableBleutooth()
+		public func disableBluetooth()
 		public func bluetoothIsEnabled() -> Bool
 		public func startScanForDevices()
 		public func stopScan()
