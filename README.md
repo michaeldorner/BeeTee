@@ -1,4 +1,5 @@
 ![Swift](http://img.shields.io/badge/swift-3.0-brightgreen.svg)
+[![Build Status](https://travis-ci.org/michaeldorner/BeeTee.svg?branch=master)](https://travis-ci.org/michaeldorner/BeeTee)
 [![codebeat badge](https://codebeat.co/badges/65bf4b44-cbbc-4807-a9e9-b3cd68c4378d)](https://codebeat.co/projects/github-com-michaeldorner-beetee)
 [![DUB](https://img.shields.io/dub/l/vibe-d.svg)]()
 
@@ -26,7 +27,7 @@ Besides BeeTee demonstrates how to access the private `BluetoothManager.framewor
 
 Based on the [AppStore guideline §2.5](https://developer.apple.com/appstore/resources/approval/guidelines.html) on private (undocumented) functions it is not possible to publish apps with the _BeeTee_ and `BluetoothManager.framework` in the AppStore. 
 
-You need a valid membership of the [iOS Developer Program](https://developer.apple.com/programs/ios/), because the _BeeTee_ does not work in the simulator.
+You need a valid membership of the [iOS Developer Program](https://developer.apple.com/programs/ios/), because the _BeeTee_ does not work in the iOS simulator.
 
 Connecting to devices is not possible in most cases and, therefore, not yet supported. 
 
@@ -57,7 +58,7 @@ Here is a small code snippet, which shows how simple
 	    
 	   init() {
 	        beeTee.delegate = self
-	        beeTee.turnBluetoothOn()
+	        beeTee.enableBluetooth()
 	        beeTee.startScanForDevices()
 	    }
 	    
@@ -115,13 +116,13 @@ So all known notification from `BluetoothManager.framework` are passed through (
 		public var delegate: BeeTeeDelegate?
 		public var availableDevices: [BeeTeeDevice]
 		convenience init(delegate: BeeTeeDelegate)
-		public func turnBluetoothOn()
-		public func turnBluetoothOff()
-		public func bluetoothIsOn() -> Bool
+		public func enableBluetooth()
+		public func disableBleutooth()
+		public func bluetoothIsEnabled() -> Bool
 		public func startScanForDevices()
 		public func stopScan()
 		public func isScanning() -> Bool
-		public func debugLowLevel() // see section BluetoothManager.framework/Available Notification
+		public static func debugLowLevel() // see section BluetoothManager.framework/Available Notification
 	}
 
 
@@ -159,8 +160,7 @@ Maybe the list is not complete. You can look for them youself using
 	        .deliverImmediately)
 or with in `BeeTee`:
 
-	let beeTee = BeeTee()
-	beeTee.debugLowLevel()
+	BeeTee.debugLowLevel()
 
 
 ## Known Issues
@@ -176,18 +176,19 @@ If you have problems make this project running have a look at [Stackoverflow](ht
 
 Help is welcome! If you do not know what to do, just pick one item and send me a pull request.
 
-- [ ] Provide a more detailed introduction to _BeeTee_ installation
+- [ ] Fix issue with multiple notifications
+- [ ] Provide a more detailed introduction to _BeeTee_ installation if needed
 - [ ] Restructure BeeTee in a framework (`BeeTee.framework`, see [discussion on stackoverflow](http://stackoverflow.com/questions/41303716/objective-c-code-swift-framework-internal))
 - [ ] Write test cases
 - [ ] Support Cocoapods
 - [ ] Improve documentation, especially inline documentation
-- [ ] Support Travis (if possible, because of private framework usage)
-- [ ] Fix issue with multiple notifications
+- [ ] Provide app icons
+- [x] Support Travis support
 
 
 ## Versions
 
-### 3.0 beta
+### 3.0-beta
 * Rewritten in Swift 3
 * New API
 * Clear separation of Objective-C and Swift code
@@ -206,3 +207,4 @@ Help is welcome! If you do not know what to do, just pick one item and send me a
 ## License 
 
 BeeTee is released under the MIT license. See [LICENSE](LICENSE) for more details.
+The list icon was created by Aya Sofya (thenounproject.com).
