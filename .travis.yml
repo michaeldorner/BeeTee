@@ -6,7 +6,7 @@ language: objective-c
 osx_image: xcode8.1
 
 script:
-- xcodebuild -sdk iphoneos -project BeeTee.xcodeproj build
+- xcodebuild -project BeeTee.xcodeproj -target BeeTee -sdk iphonesimulator
 
 after_success:
 - bash <(curl -s https://codecov.io/bash)
