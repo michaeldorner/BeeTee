@@ -18,7 +18,7 @@ Besides BeeTee demonstrates how to access the private `BluetoothManager.framewor
 - [Installation](#installation)
 - [Usage](#usage)
 - [API](#api)
-- [Known Issues](#known issues)
+- [Known Issues](#known-issues)
 - [Contributions](#contributions)
 - [Versions](#versions)
 - [License](#license)
