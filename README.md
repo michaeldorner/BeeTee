@@ -189,6 +189,13 @@ Help is welcome! If you do not know what to do, just pick one item and send me a
 
 ## Versions
 
+### 3.0
+* Rewritten in Swift 3
+* New API
+* Clear separation of Objective-C and Swift code
+* Dynamically loading of `Bluetooth.framework` (so no more header and import trouble)
+* Released now under MIT license 
+
 ### 3.0-beta
 * Rewritten in Swift 3
 * New API
