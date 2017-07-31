@@ -178,7 +178,6 @@ If you have problems make this project running have a look at [Stackoverflow](ht
 Help is welcome! If you do not know what to do, just pick one item and send me a pull request.
 
 - [ ] Fix issue with multiple notifications
-- [ ] Provide a more detailed introduction to _BeeTee_ installation if needed
 - [ ] Restructure BeeTee in a framework (`BeeTee.framework`, see [discussion on stackoverflow](http://stackoverflow.com/questions/41303716/objective-c-code-swift-framework-internal))
 - [ ] Write test cases
 - [ ] Support Cocoapods
@@ -195,13 +194,6 @@ Help is welcome! If you do not know what to do, just pick one item and send me a
 * Clear separation of Objective-C and Swift code
 * Dynamically loading of `Bluetooth.framework` (so no more header and import trouble)
 * Released now under MIT license 
-
-### 3.0-beta
-* Rewritten in Swift 3
-* New API
-* Clear separation of Objective-C and Swift code
-* Dynamically loading of `Bluetooth.framework` (so no more header and import trouble)
-* Released now under MIT license
 
 ### 2.0
 * Wrapper classes `MDBluetoothManager` and `MDBluetoothDevice` introduced 
