@@ -146,7 +146,7 @@ I found the following notification regarding Bluetooth
     BluetoothConnectionStatusChangedNotification
     BluetoothDeviceDisconnectSuccessNotification
     
-Maybe the list is not complete. You can look for them youself using
+Maybe the list is not complete. You can look for them yourself using
 
 	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
 	        nil,
