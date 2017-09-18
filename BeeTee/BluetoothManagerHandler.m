@@ -64,5 +64,20 @@ static BluetoothManagerHandler *_handler = nil;
 - (void)enable {
     [_bluetoothManager setEnabled:true];
 }
+    
+    
+/* for iOS 11 */
+    
+- (bool)blacklistEnabled {
+    return [_bluetoothManager blacklistEnabled];
+}
+    
+- (void)enableBlacklist {
+    [_bluetoothManager setBlacklistEnabled:true];
+}
+    
+- (void)disableBlacklist {
+    [_bluetoothManager setBlacklistEnabled:false];
+}
 
 @end

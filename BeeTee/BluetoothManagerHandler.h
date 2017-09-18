@@ -17,5 +17,10 @@
 - (bool) enabled;
 - (void) disable;
 - (void) enable;
+    
+/* for iOS 11 */
+- (bool) blacklistEnabled;
+- (void) enableBlacklist;
+- (void) disableBlacklist;
 
 @end

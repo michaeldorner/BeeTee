@@ -226,8 +226,9 @@
 				TargetAttributes = {
 					5F2408ED1E0C0134004AF90F = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = PVDQENGS8C;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					5F2409011E0C0134004AF90F = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -431,15 +432,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PVDQENGS8C;
 				INFOPLIST_FILE = "$(SRCROOT)/BeeTee Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.michaeldorner.BeeTee;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.michaeldorner.BeeTee.ios11-fix";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BeeTee/BeeTee-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -452,15 +455,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PVDQENGS8C;
 				INFOPLIST_FILE = "$(SRCROOT)/BeeTee Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.michaeldorner.BeeTee;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.michaeldorner.BeeTee.ios11-fix";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BeeTee/BeeTee-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
