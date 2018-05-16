@@ -176,6 +176,7 @@ If you have problems make this project running have a look at [Stackoverflow](ht
 ## Contributions
 
 Help is welcome! If you do not know what to do, just pick one item and send me a pull request.
+Be sure to follow the [contributing guidelines](./CONTRIBUTING.md).
 
 - [ ] Fix issue with multiple notifications
 - [ ] Restructure BeeTee in a framework (`BeeTee.framework`, see [discussion on stackoverflow](http://stackoverflow.com/questions/41303716/objective-c-code-swift-framework-internal))
