@@ -1,8 +1,7 @@
-![Swift](http://img.shields.io/badge/swift-3.0-brightgreen.svg)
 [![Build Status](https://travis-ci.org/michaeldorner/BeeTee.svg?branch=master)](https://travis-ci.org/michaeldorner/BeeTee)
 [![codebeat badge](https://codebeat.co/badges/65bf4b44-cbbc-4807-a9e9-b3cd68c4378d)](https://codebeat.co/projects/github-com-michaeldorner-beetee)
-[![DUB](https://img.shields.io/dub/l/vibe-d.svg)]()
 [![codecov](https://codecov.io/gh/michaeldorner/BeeTee/branch/master/graph/badge.svg)](https://codecov.io/gh/michaeldorner/BeeTee)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 
 # BeeTee
