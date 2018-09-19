@@ -182,7 +182,8 @@ Help is welcome! If you do not know what to do, just pick one item and send me a
 - [ ] Write test cases
 - [ ] Support Cocoapods
 - [ ] Improve documentation, especially inline documentation
-- [ ] Provide app icons
+- [ ] Add pull-to-refresh functionality for renewing the Available Devices list
+- [x] Provide app icons
 - [x] Support Travis support
 
 
