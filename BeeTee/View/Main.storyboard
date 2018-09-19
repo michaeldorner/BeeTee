@@ -1,39 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xHc-kc-34a">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xHc-kc-34a">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Available Devices-->
         <scene sceneID="HH2-jY-xzd">
             <objects>
-                <tableViewController id="TsF-5F-cgi" customClass="DeviceListingViewController" customModule="BeeTee" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="TsF-5F-cgi" customClass="AvailableDevicesViewController" customModule="BeeTee" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9xF-RZ-fRr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DeviceCellIdentifier" textLabel="iug-kI-3XO" detailTextLabel="abr-Dm-LY2" style="IBUITableViewCellStyleSubtitle" id="dmk-tp-LaW">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dmk-tp-LaW" id="rFy-eZ-28k">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="562" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iug-kI-3XO">
-                                            <rect key="frame" x="15" y="4" width="34" height="21"/>
+                                            <rect key="frame" x="20" y="5" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="abr-Dm-LY2">
-                                            <rect key="frame" x="15" y="25" width="44" height="15"/>
+                                            <rect key="frame" x="20" y="25.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -55,15 +51,15 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPM-11-kJf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1420" y="-348"/>
+            <point key="canvasLocation" x="1478" y="353"/>
         </scene>
         <!--Available Devices-->
         <scene sceneID="rcb-3O-ext">
             <objects>
                 <navigationController id="VNV-Qq-KCB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Available Devices" image="DeviceListing" selectedImage="DeviceListing" id="ocy-CZ-wvo"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iOT-9T-MhV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="iOT-9T-MhV">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -72,33 +68,33 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kAm-LY-Hg8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="666" y="-347"/>
+            <point key="canvasLocation" x="722" y="353"/>
         </scene>
-        <!--Device Detail View Controller-->
+        <!--Available Devices Detail View Controller-->
         <scene sceneID="52t-EE-eng">
             <objects>
-                <tableViewController id="5TA-Ix-vPu" customClass="DeviceDetailViewController" customModule="BeeTee" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="5TA-Ix-vPu" customClass="AvailableDevicesDetailViewController" customModule="BeeTee" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="8Zo-gy-HEA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeviceDetailCellIdentifier" textLabel="Vqg-q7-c2s" detailTextLabel="fr6-aL-aq6" style="IBUITableViewCellStyleValue2" id="do9-3x-Dlr">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="do9-3x-Dlr" id="L1U-5Q-4ab">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vqg-q7-c2s">
-                                            <rect key="frame" x="15" y="14" width="91" height="16"/>
+                                            <rect key="frame" x="20" y="14" width="91" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fr6-aL-aq6">
-                                            <rect key="frame" x="112" y="14" width="35" height="16"/>
+                                            <rect key="frame" x="117" y="14" width="35" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
@@ -117,7 +113,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6js-V9-RDK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2167" y="-348"/>
+            <point key="canvasLocation" x="2222" y="352"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qe4-Se-N6W">
@@ -137,13 +133,13 @@
             </objects>
             <point key="canvasLocation" x="-310" y="7"/>
         </scene>
-        <!--Mission Control-->
+        <!--Bluetooth Control-->
         <scene sceneID="WJS-H0-eeD">
             <objects>
                 <navigationController id="ZfG-JE-bog" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Mission Control" id="SjI-Rp-Y8P"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="r35-rj-mYK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <tabBarItem key="tabBarItem" title="Bluetooth Control" id="SjI-Rp-Y8P"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="r35-rj-mYK">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -152,24 +148,24 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0kZ-di-AJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="665" y="322"/>
+            <point key="canvasLocation" x="722" y="-340"/>
         </scene>
-        <!--Mission Control-->
+        <!--Bluetooth Control-->
         <scene sceneID="Rds-kC-Pw5">
             <objects>
-                <tableViewController id="To5-CM-11h" customClass="MissionControlViewController" customModule="BeeTee" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="To5-CM-11h" customClass="BluetoothControlViewController" customModule="BeeTee" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="5CV-P7-yu6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection id="hSf-U8-TQa">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="5Z3-dQ-JQO">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="35" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Z3-dQ-JQO" id="3uE-sw-9uL">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bluetooth Power" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0H-g9-rqU">
@@ -180,7 +176,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jok-JS-aLg">
-                                                    <rect key="frame" x="318" y="6" width="51" height="31"/>
+                                                    <rect key="frame" x="543" y="6" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <connections>
                                                         <action selector="switchBluetoothPower" destination="To5-CM-11h" eventType="valueChanged" id="tjT-tA-2qx"/>
@@ -190,14 +186,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="lhU-XG-7Jy">
-                                        <rect key="frame" x="0.0" y="79" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="79" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lhU-XG-7Jy" id="Vlc-ml-3jV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OuI-qn-KPi">
-                                                    <rect key="frame" x="318" y="6" width="51" height="31"/>
+                                                    <rect key="frame" x="543" y="6" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <connections>
                                                         <action selector="switchBluetoothScanStatus" destination="To5-CM-11h" eventType="valueChanged" id="DzG-oJ-XxE"/>
@@ -221,8 +217,8 @@
                             <outlet property="delegate" destination="To5-CM-11h" id="x0Z-Ix-JH0"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Mission Control" image="MissionControl" selectedImage="MissionControl" id="jqF-To-HJq"/>
-                    <navigationItem key="navigationItem" title="Mission Control" id="zi5-Wx-1w1"/>
+                    <tabBarItem key="tabBarItem" title="Bluetooth Control" image="MissionControl" selectedImage="MissionControl" id="jqF-To-HJq"/>
+                    <navigationItem key="navigationItem" title="Bluetooth Control" id="zi5-Wx-1w1"/>
                     <connections>
                         <outlet property="bluetoothPowerSwitch" destination="jok-JS-aLg" id="Ag9-T7-d8X"/>
                         <outlet property="bluetoothScanSwitch" destination="OuI-qn-KPi" id="VM5-Ay-EHV"/>
@@ -230,7 +226,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NfO-K2-ccY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1420" y="322"/>
+            <point key="canvasLocation" x="1478" y="-340"/>
         </scene>
     </scenes>
     <resources>

@@ -7,18 +7,18 @@
  */
 
 @interface BluetoothManager : NSObject {
-    struct BTAccessoryManagerImpl { } * _accessoryManager;
-    BOOL  _audioConnected;
-    int  _available;
-    NSMutableDictionary * _btAddrDict;
-    NSMutableDictionary * _btDeviceDict;
-    struct BTDiscoveryAgentImpl { } * _discoveryAgent;
-    struct BTLocalDeviceImpl { } * _localDevice;
-    struct BTPairingAgentImpl { } * _pairingAgent;
-    BOOL  _scanningEnabled;
-    BOOL  _scanningInProgress;
-    unsigned int  _scanningServiceMask;
-    struct BTSessionImpl { } * _session;
+	struct BTAccessoryManagerImpl { } * _accessoryManager;
+	BOOL  _audioConnected;
+	int  _available;
+	NSMutableDictionary * _btAddrDict;
+	NSMutableDictionary * _btDeviceDict;
+	struct BTDiscoveryAgentImpl { } * _discoveryAgent;
+	struct BTLocalDeviceImpl { } * _localDevice;
+	struct BTPairingAgentImpl { } * _pairingAgent;
+	BOOL  _scanningEnabled;
+	BOOL  _scanningInProgress;
+	unsigned int  _scanningServiceMask;
+	struct BTSessionImpl { } * _session;
 }
 
 // Image: /System/Library/PrivateFrameworks/BluetoothManager.framework/BluetoothManager

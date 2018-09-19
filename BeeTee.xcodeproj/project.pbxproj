@@ -7,19 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F0893721E17F82500197FAD /* MissionControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0893711E17F82500197FAD /* MissionControlViewController.swift */; };
-		5F0893761E181C7B00197FAD /* BeeTeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0893751E181C7B00197FAD /* BeeTeeModel.swift */; };
-		5F08937D1E19021500197FAD /* DeviceListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F08937C1E19021500197FAD /* DeviceListingViewController.swift */; };
-		5F08937F1E19071800197FAD /* DeviceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F08937E1E19071800197FAD /* DeviceDetailViewController.swift */; };
-		5F1764F71E0EBFB0003F888A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1764F61E0EBFB0003F888A /* AppDelegate.swift */; };
-		5F1764F91E0EBFBA003F888A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F1764F81E0EBFBA003F888A /* Assets.xcassets */; };
-		5F1764FE1E0EBFC2003F888A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F1764FA1E0EBFC2003F888A /* LaunchScreen.storyboard */; };
-		5F1764FF1E0EBFC2003F888A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F1764FC1E0EBFC2003F888A /* Main.storyboard */; };
+		36D630EC20B6AFE00052551A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D630E920B6AFDF0052551A /* AppDelegate.swift */; };
+		36D630ED20B6AFE00052551A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36D630EA20B6AFE00052551A /* Assets.xcassets */; };
+		36D630F120B6AFEB0052551A /* BluetoothControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D630EE20B6AFEB0052551A /* BluetoothControlViewController.swift */; };
+		36D630F220B6AFEB0052551A /* AvailableDevicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D630EF20B6AFEB0052551A /* AvailableDevicesViewController.swift */; };
+		36D630F320B6AFEB0052551A /* AvailableDevicesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D630F020B6AFEB0052551A /* AvailableDevicesDetailViewController.swift */; };
+		36D630FE20B6B0150052551A /* BluetoothManagerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D630F520B6B0140052551A /* BluetoothManagerHandler.m */; };
+		36D630FF20B6B0150052551A /* BeeTeeDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D630F720B6B0140052551A /* BeeTeeDevice.swift */; };
+		36D6310020B6B0150052551A /* BeeTee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D630F820B6B0140052551A /* BeeTee.swift */; };
+		36D6310120B6B0150052551A /* BeeTeeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D630F920B6B0150052551A /* BeeTeeDelegate.swift */; };
+		36D6310220B6B0150052551A /* BeeTeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D630FA20B6B0150052551A /* BeeTeeModel.swift */; };
+		36D6310320B6B0150052551A /* BeeTeeNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D630FC20B6B0150052551A /* BeeTeeNotification.swift */; };
+		36D6310420B6B0150052551A /* BluetoothDeviceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D630FD20B6B0150052551A /* BluetoothDeviceHandler.m */; };
+		36D6310A20B6B03B0052551A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36D6310820B6B03B0052551A /* Main.storyboard */; };
+		36D6310B20B6B03B0052551A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36D6310920B6B03B0052551A /* LaunchScreen.storyboard */; };
 		5F2409071E0C0134004AF90F /* BeeTeeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2409061E0C0134004AF90F /* BeeTeeTests.swift */; };
-		5F9F63371E0EB9300014A043 /* BeeTee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9F632F1E0EB9300014A043 /* BeeTee.swift */; };
-		5F9F63381E0EB9300014A043 /* BeeTeeDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9F63301E0EB9300014A043 /* BeeTeeDevice.swift */; };
-		5F9F63391E0EB9300014A043 /* BluetoothDeviceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9F63331E0EB9300014A043 /* BluetoothDeviceHandler.m */; };
-		5F9F633A1E0EB9300014A043 /* BluetoothManagerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9F63361E0EB9300014A043 /* BluetoothManagerHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,28 +35,30 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5F0893711E17F82500197FAD /* MissionControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MissionControlViewController.swift; path = "BeeTee Demo/MissionControlViewController.swift"; sourceTree = SOURCE_ROOT; };
-		5F0893751E181C7B00197FAD /* BeeTeeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeeTeeModel.swift; sourceTree = "<group>"; };
-		5F08937C1E19021500197FAD /* DeviceListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceListingViewController.swift; sourceTree = "<group>"; };
-		5F08937E1E19071800197FAD /* DeviceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDetailViewController.swift; sourceTree = "<group>"; };
-		5F1764F61E0EBFB0003F888A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "BeeTee Demo/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
-		5F1764F81E0EBFBA003F888A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "BeeTee Demo/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
-		5F1764FB1E0EBFC2003F888A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "BeeTee Demo/Base.lproj/LaunchScreen.storyboard"; sourceTree = SOURCE_ROOT; };
-		5F1764FD1E0EBFC2003F888A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "BeeTee Demo/Base.lproj/Main.storyboard"; sourceTree = SOURCE_ROOT; };
-		5F1765001E0EBFD2003F888A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "BeeTee Demo/Info.plist"; sourceTree = SOURCE_ROOT; };
+		36D630E820B6AFDF0052551A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36D630E920B6AFDF0052551A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		36D630EA20B6AFE00052551A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		36D630EE20B6AFEB0052551A /* BluetoothControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothControlViewController.swift; sourceTree = "<group>"; };
+		36D630EF20B6AFEB0052551A /* AvailableDevicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableDevicesViewController.swift; sourceTree = "<group>"; };
+		36D630F020B6AFEB0052551A /* AvailableDevicesDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableDevicesDetailViewController.swift; sourceTree = "<group>"; };
+		36D630F420B6B0140052551A /* BluetoothManagerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothManagerHandler.h; sourceTree = "<group>"; };
+		36D630F520B6B0140052551A /* BluetoothManagerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothManagerHandler.m; sourceTree = "<group>"; };
+		36D630F620B6B0140052551A /* BluetoothDeviceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothDeviceHandler.h; sourceTree = "<group>"; };
+		36D630F720B6B0140052551A /* BeeTeeDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeeTeeDevice.swift; sourceTree = "<group>"; };
+		36D630F820B6B0140052551A /* BeeTee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeeTee.swift; sourceTree = "<group>"; };
+		36D630F920B6B0150052551A /* BeeTeeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeeTeeDelegate.swift; sourceTree = "<group>"; };
+		36D630FA20B6B0150052551A /* BeeTeeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeeTeeModel.swift; sourceTree = "<group>"; };
+		36D630FB20B6B0150052551A /* BeeTee-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BeeTee-Bridging-Header.h"; sourceTree = "<group>"; };
+		36D630FC20B6B0150052551A /* BeeTeeNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeeTeeNotification.swift; sourceTree = "<group>"; };
+		36D630FD20B6B0150052551A /* BluetoothDeviceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothDeviceHandler.m; sourceTree = "<group>"; };
+		36D6310620B6B0250052551A /* BluetoothManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BluetoothManager.h; sourceTree = "<group>"; };
+		36D6310720B6B0250052551A /* BluetoothDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BluetoothDevice.h; sourceTree = "<group>"; };
+		36D6310820B6B03B0052551A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		36D6310920B6B03B0052551A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5F2408EE1E0C0134004AF90F /* BeeTee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeeTee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F2409021E0C0134004AF90F /* BeeTeeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeeTeeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F2409061E0C0134004AF90F /* BeeTeeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeTeeTests.swift; sourceTree = "<group>"; };
 		5F2409081E0C0134004AF90F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5F9F632E1E0EB9300014A043 /* BeeTee-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BeeTee-Bridging-Header.h"; path = "BeeTee/BeeTee-Bridging-Header.h"; sourceTree = "<group>"; };
-		5F9F632F1E0EB9300014A043 /* BeeTee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BeeTee.swift; path = BeeTee/BeeTee.swift; sourceTree = "<group>"; };
-		5F9F63301E0EB9300014A043 /* BeeTeeDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BeeTeeDevice.swift; path = BeeTee/BeeTeeDevice.swift; sourceTree = "<group>"; };
-		5F9F63311E0EB9300014A043 /* BluetoothDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BluetoothDevice.h; path = BeeTee/BluetoothDevice.h; sourceTree = "<group>"; };
-		5F9F63321E0EB9300014A043 /* BluetoothDeviceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BluetoothDeviceHandler.h; path = BeeTee/BluetoothDeviceHandler.h; sourceTree = "<group>"; };
-		5F9F63331E0EB9300014A043 /* BluetoothDeviceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BluetoothDeviceHandler.m; path = BeeTee/BluetoothDeviceHandler.m; sourceTree = "<group>"; };
-		5F9F63341E0EB9300014A043 /* BluetoothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BluetoothManager.h; path = BeeTee/BluetoothManager.h; sourceTree = "<group>"; };
-		5F9F63351E0EB9300014A043 /* BluetoothManagerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BluetoothManagerHandler.h; path = BeeTee/BluetoothManagerHandler.h; sourceTree = "<group>"; };
-		5F9F63361E0EB9300014A043 /* BluetoothManagerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BluetoothManagerHandler.m; path = BeeTee/BluetoothManagerHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,39 +79,69 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5F0893791E18F95B00197FAD /* View */ = {
+		36D630E320B6AFA50052551A /* BeeTee */ = {
 			isa = PBXGroup;
 			children = (
-				5F1764F81E0EBFBA003F888A /* Assets.xcassets */,
-				5F1764FA1E0EBFC2003F888A /* LaunchScreen.storyboard */,
-				5F1764FC1E0EBFC2003F888A /* Main.storyboard */,
+				36D630E720B6AFC50052551A /* Other */,
+				36D630E620B6AFBE0052551A /* Controller */,
+				36D630E520B6AFB80052551A /* View */,
+				36D630E420B6AFB20052551A /* Model */,
 			);
-			name = View;
+			path = BeeTee;
 			sourceTree = "<group>";
 		};
-		5F08937A1E18F96900197FAD /* Controller */ = {
+		36D630E420B6AFB20052551A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5F0893711E17F82500197FAD /* MissionControlViewController.swift */,
-				5F08937C1E19021500197FAD /* DeviceListingViewController.swift */,
-				5F08937E1E19071800197FAD /* DeviceDetailViewController.swift */,
+				36D6310720B6B0250052551A /* BluetoothDevice.h */,
+				36D6310620B6B0250052551A /* BluetoothManager.h */,
+				36D630FB20B6B0150052551A /* BeeTee-Bridging-Header.h */,
+				36D630F820B6B0140052551A /* BeeTee.swift */,
+				36D630F920B6B0150052551A /* BeeTeeDelegate.swift */,
+				36D630F720B6B0140052551A /* BeeTeeDevice.swift */,
+				36D630FA20B6B0150052551A /* BeeTeeModel.swift */,
+				36D630FC20B6B0150052551A /* BeeTeeNotification.swift */,
+				36D630F620B6B0140052551A /* BluetoothDeviceHandler.h */,
+				36D630FD20B6B0150052551A /* BluetoothDeviceHandler.m */,
+				36D630F420B6B0140052551A /* BluetoothManagerHandler.h */,
+				36D630F520B6B0140052551A /* BluetoothManagerHandler.m */,
 			);
-			name = Controller;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		5F08937B1E18F97000197FAD /* Model */ = {
+		36D630E520B6AFB80052551A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5F0893751E181C7B00197FAD /* BeeTeeModel.swift */,
+				36D6310920B6B03B0052551A /* LaunchScreen.storyboard */,
+				36D6310820B6B03B0052551A /* Main.storyboard */,
 			);
-			name = Model;
+			path = View;
+			sourceTree = "<group>";
+		};
+		36D630E620B6AFBE0052551A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				36D630F020B6AFEB0052551A /* AvailableDevicesDetailViewController.swift */,
+				36D630EF20B6AFEB0052551A /* AvailableDevicesViewController.swift */,
+				36D630EE20B6AFEB0052551A /* BluetoothControlViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		36D630E720B6AFC50052551A /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				36D630E920B6AFDF0052551A /* AppDelegate.swift */,
+				36D630EA20B6AFE00052551A /* Assets.xcassets */,
+				36D630E820B6AFDF0052551A /* Info.plist */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		5F2408E51E0C0134004AF90F = {
 			isa = PBXGroup;
 			children = (
-				5F9F632D1E0EB60A0014A043 /* BeeTee */,
-				5F2408F01E0C0134004AF90F /* BeeTee Demo */,
+				36D630E320B6AFA50052551A /* BeeTee */,
 				5F2409051E0C0134004AF90F /* BeeTeeTests */,
 				5F2408EF1E0C0134004AF90F /* Products */,
 			);
@@ -122,19 +156,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5F2408F01E0C0134004AF90F /* BeeTee Demo */ = {
-			isa = PBXGroup;
-			children = (
-				5F1765001E0EBFD2003F888A /* Info.plist */,
-				5F1764F61E0EBFB0003F888A /* AppDelegate.swift */,
-				5F0893791E18F95B00197FAD /* View */,
-				5F08937A1E18F96900197FAD /* Controller */,
-				5F08937B1E18F97000197FAD /* Model */,
-			);
-			name = "BeeTee Demo";
-			path = BeeTee;
-			sourceTree = "<group>";
-		};
 		5F2409051E0C0134004AF90F /* BeeTeeTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,38 +163,6 @@
 				5F2409081E0C0134004AF90F /* Info.plist */,
 			);
 			path = BeeTeeTests;
-			sourceTree = "<group>";
-		};
-		5F9F63281E0D75EC0014A043 /* Objective-C */ = {
-			isa = PBXGroup;
-			children = (
-				5F9F632E1E0EB9300014A043 /* BeeTee-Bridging-Header.h */,
-				5F9F63321E0EB9300014A043 /* BluetoothDeviceHandler.h */,
-				5F9F63331E0EB9300014A043 /* BluetoothDeviceHandler.m */,
-				5F9F63351E0EB9300014A043 /* BluetoothManagerHandler.h */,
-				5F9F63361E0EB9300014A043 /* BluetoothManagerHandler.m */,
-				5F9F63291E0D75F70014A043 /* Private Headers */,
-			);
-			name = "Objective-C";
-			sourceTree = "<group>";
-		};
-		5F9F63291E0D75F70014A043 /* Private Headers */ = {
-			isa = PBXGroup;
-			children = (
-				5F9F63311E0EB9300014A043 /* BluetoothDevice.h */,
-				5F9F63341E0EB9300014A043 /* BluetoothManager.h */,
-			);
-			name = "Private Headers";
-			sourceTree = "<group>";
-		};
-		5F9F632D1E0EB60A0014A043 /* BeeTee */ = {
-			isa = PBXGroup;
-			children = (
-				5F9F632F1E0EB9300014A043 /* BeeTee.swift */,
-				5F9F63301E0EB9300014A043 /* BeeTeeDevice.swift */,
-				5F9F63281E0D75EC0014A043 /* Objective-C */,
-			);
-			name = BeeTee;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,13 +210,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Michael Dorner";
 				TargetAttributes = {
 					5F2408ED1E0C0134004AF90F = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 3KDTV5NX96;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					5F2409011E0C0134004AF90F = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -260,9 +250,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F1764F91E0EBFBA003F888A /* Assets.xcassets in Resources */,
-				5F1764FF1E0EBFC2003F888A /* Main.storyboard in Resources */,
-				5F1764FE1E0EBFC2003F888A /* LaunchScreen.storyboard in Resources */,
+				36D6310A20B6B03B0052551A /* Main.storyboard in Resources */,
+				36D6310B20B6B03B0052551A /* LaunchScreen.storyboard in Resources */,
+				36D630ED20B6AFE00052551A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,15 +270,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F9F633A1E0EB9300014A043 /* BluetoothManagerHandler.m in Sources */,
-				5F9F63371E0EB9300014A043 /* BeeTee.swift in Sources */,
-				5F1764F71E0EBFB0003F888A /* AppDelegate.swift in Sources */,
-				5F08937D1E19021500197FAD /* DeviceListingViewController.swift in Sources */,
-				5F9F63381E0EB9300014A043 /* BeeTeeDevice.swift in Sources */,
-				5F08937F1E19071800197FAD /* DeviceDetailViewController.swift in Sources */,
-				5F0893761E181C7B00197FAD /* BeeTeeModel.swift in Sources */,
-				5F9F63391E0EB9300014A043 /* BluetoothDeviceHandler.m in Sources */,
-				5F0893721E17F82500197FAD /* MissionControlViewController.swift in Sources */,
+				36D630F220B6AFEB0052551A /* AvailableDevicesViewController.swift in Sources */,
+				36D6310020B6B0150052551A /* BeeTee.swift in Sources */,
+				36D6310320B6B0150052551A /* BeeTeeNotification.swift in Sources */,
+				36D630FE20B6B0150052551A /* BluetoothManagerHandler.m in Sources */,
+				36D630F320B6AFEB0052551A /* AvailableDevicesDetailViewController.swift in Sources */,
+				36D6310120B6B0150052551A /* BeeTeeDelegate.swift in Sources */,
+				36D630EC20B6AFE00052551A /* AppDelegate.swift in Sources */,
+				36D6310220B6B0150052551A /* BeeTeeModel.swift in Sources */,
+				36D6310420B6B0150052551A /* BluetoothDeviceHandler.m in Sources */,
+				36D630F120B6AFEB0052551A /* BluetoothControlViewController.swift in Sources */,
+				36D630FF20B6B0150052551A /* BeeTeeDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,25 +302,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		5F1764FA1E0EBFC2003F888A /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5F1764FB1E0EBFC2003F888A /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		5F1764FC1E0EBFC2003F888A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5F1764FD1E0EBFC2003F888A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		5F2409091E0C0134004AF90F /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -339,15 +312,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -390,15 +371,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -429,10 +418,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "$(SRCROOT)/BeeTee Demo/Info.plist";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3KDTV5NX96;
+				INFOPLIST_FILE = "$(SRCROOT)/BeeTee/Other/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -440,9 +432,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.michaeldorner.BeeTee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BeeTee/BeeTee-Bridging-Header.h";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "BeeTee/Model/BeeTee-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -450,10 +443,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "$(SRCROOT)/BeeTee Demo/Info.plist";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3KDTV5NX96;
+				INFOPLIST_FILE = "$(SRCROOT)/BeeTee/Other/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -461,8 +457,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.michaeldorner.BeeTee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BeeTee/BeeTee-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "BeeTee/Model/BeeTee-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -475,7 +472,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.michaeldorner.BeeTeeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeeTee.app/BeeTee";
 			};
 			name = Debug;
@@ -489,7 +486,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.michaeldorner.BeeTeeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeeTee.app/BeeTee";
 			};
 			name = Release;
