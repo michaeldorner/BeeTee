@@ -7,7 +7,7 @@
 //
 
 // TODO: Conform this enum to `CaseIterable` when Swift 4.2 is released.
-enum BeeTeeNotification: String {
+enum BeeTeeNotification: String, CaseIterable {
 	case PowerChanged               = "BluetoothPowerChangedNotification"
 	case AvailabilityChanged        = "BluetoothAvailabilityChangedNotification"
 	case DeviceDiscovered           = "BluetoothDeviceDiscoveredNotification"

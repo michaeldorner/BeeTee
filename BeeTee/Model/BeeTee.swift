@@ -24,7 +24,7 @@ class BeeTee {
 	private var tokenCache = [BeeTeeNotification: NSObjectProtocol]()
 	
 	public init() {
-		for beeTeeNotification in BeeTeeNotification.allNotifications {
+		for beeTeeNotification in BeeTeeNotification.allCases {
 			print("Registered \(beeTeeNotification)")
 		
 			let notification = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: beeTeeNotification.rawValue),
