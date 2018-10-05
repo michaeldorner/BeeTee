@@ -67,4 +67,23 @@ class BeeTeeModel: BeeTeeDelegate {
         //todo: add remove
     }
     
+    
+    /* for iOS 11 */
+    
+    public func enableBlacklist() {
+        beeTee.enableBlacklist()
+        print("Enable Blacklist")
+        
+    }
+    
+    public func disableBlacklist() {
+        beeTee.disableBlacklist()
+        print("Disable Blacklist")
+        
+    }
+    
+    public func blacklistIsOn() -> Bool {
+        return beeTee.blacklistIsOn()
+    }
+    
 }

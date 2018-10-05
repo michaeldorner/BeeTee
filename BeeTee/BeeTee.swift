@@ -121,5 +121,24 @@ public class BeeTee {
         let beeTeeDevice = BeeTeeDevice(name: bluetoothDevice.name, address: bluetoothDevice.address, majorClass: bluetoothDevice.majorClass, minorClass: bluetoothDevice.minorClass, type: bluetoothDevice.type, supportsBatteryLevel: bluetoothDevice.supportsBatteryLevel, detectingDate: Date())
         return beeTeeDevice
     }
+    
+    
+    /* for iOS 11 */
+    
+    public func enableBlacklist() {
+        bluetoothManagerHandler.enableBlacklist()
+        print("Enable Blacklist")
+        
+    }
+    
+    public func disableBlacklist() {
+        bluetoothManagerHandler.disableBlacklist()
+        print("Disable Blacklist")
+        
+    }
+    
+    public func blacklistIsOn() -> Bool {
+        return bluetoothManagerHandler.blacklistEnabled()
+    }
 }
 

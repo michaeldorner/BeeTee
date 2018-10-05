@@ -89,6 +89,8 @@
 - (void)startVoiceCommand:(id)arg1;
 - (void)unpairDevice:(id)arg1;
 - (BOOL)wasDeviceDiscovered:(id)arg1;
+- (bool)blacklistEnabled;
+- (void)setBlacklistEnabled:(bool)arg1;
 
 // Image: /System/Library/PrivateFrameworks/GameKitServices.framework/GameKitServices
 
